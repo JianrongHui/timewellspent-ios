@@ -15,7 +15,7 @@ class ShieldActionExtension: ShieldActionDelegate {
     override func handle(action: ShieldAction, for application: ApplicationToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
         switch action {
         case .primaryButtonPressed:
-            completionHandler(.none)
+            completionHandler(.close)
         case .secondaryButtonPressed:
             completionHandler(.close)
         @unknown default:
@@ -25,13 +25,27 @@ class ShieldActionExtension: ShieldActionDelegate {
     
     override func handle(action: ShieldAction, for webDomain: WebDomainToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
         
-        //TODO: same as above
+        switch action {
+        case .primaryButtonPressed:
+            completionHandler(.close)
+        case .secondaryButtonPressed:
+            completionHandler(.close)
+        @unknown default:
+            fatalError()
+        }
         
     }
     
     override func handle(action: ShieldAction, for category: ActivityCategoryToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
         
-        //TODO: implement the same as above
+        switch action {
+        case .primaryButtonPressed:
+            completionHandler(.close)
+        case .secondaryButtonPressed:
+            completionHandler(.close)
+        @unknown default:
+            fatalError()
+        }
         
     }
 }

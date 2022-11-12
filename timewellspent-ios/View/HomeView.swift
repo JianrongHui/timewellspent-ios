@@ -67,6 +67,11 @@ struct HomeView: View {
     }
     
     func toggleMonitoringPresed() {
+//        let userDefaults = UserDefaults(suiteName: "group.leaveylabs.screentime") //not sure if this would be reliable
+//        let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.leaveylabs.screentime") //this one should work.
+        //basically, each extension acts as its own independent app, a sandbox
+        //i can save info to the appGroupURL and read it in the sandboxes. that's all the extra data i can get from the sandboxes
+        
         switch AuthorizationCenter.shared.authorizationStatus {
         case .notDetermined:
             requestScreentimeAuthorization {

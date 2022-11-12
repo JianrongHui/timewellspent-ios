@@ -12,17 +12,50 @@
 		<key>shield.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<key>shieldaction.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 		<key>timewellspent-ios.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4705073D291F5ED0007996FF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>47050753291F6050007996FF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>47050764291F60B3007996FF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>47572D622914CE9500793CF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>47572D782914CE9600793CF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>47572D822914CE9600793CF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

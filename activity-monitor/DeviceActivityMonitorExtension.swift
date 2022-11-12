@@ -6,27 +6,25 @@
 //
 
 import DeviceActivity
+import ManagedSettings
 
 // Optionally override any of the functions below.
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
-    override func intervalWillStartWarning(for activity: DeviceActivityName) {
-        super.intervalWillStartWarning(for: activity)
-        
-        // Handle the warning before the interval starts.
-    }
-    
-    override func intervalWillEndWarning(for activity: DeviceActivityName) {
-        super.intervalWillEndWarning(for: activity)
-        
-        // Handle the warning before the interval ends.
-    }
+    let store = ManagedSettingsStore(named: ManagedSettingsStore.Name(rawValue: "discouraged"))
     
     override func eventWillReachThresholdWarning(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventWillReachThresholdWarning(event, activity: activity)
         
         // Handle the warning before the event reaches its threshold.
+    }
+    
+    override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
+        super.eventDidReachThreshold(event, activity: activity)
+        //so you know which event fired for which activity name
+        
+        print("DID REACH THRESHHOLD")
     }
     
     //the function below means that...
@@ -55,13 +53,6 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
 //        let discouragedStore = ManagedSettingsStore(named: .discouraged)
 //        discouragedStore.clearAllSettings()
         //store.shield.applications = nil //or you could do this
-    }
-    
-    override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
-        super.eventDidReachThreshold(event, activity: activity)
-        //so you know which event fired for which activity name
-        
-        print("DID REACH THRESHHOLD")
     }
     
 }
