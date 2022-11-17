@@ -41,14 +41,16 @@ struct HomeView: View {
                     .font(.headline)
                     .fontWeight(.heavy)
                     .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $myManagedSettings.selectionToDiscourage).onChange(of: myManagedSettings.selectionToDiscourage) { newSelection in
-                        myManagedSettings.setShieldRestrictions()
+                        if myManagedSettings.isActive {
+                            myManagedSettings.toggleMonitoringScreentime(to: true)
+                        }
                     }
 
                 Toggle(isOn: $myManagedSettings.isActive) {
                     Text(myManagedSettings.isActive ? "Monitoring Active" : "Monitoring Inactive")
                         .fontWeight(.bold)
                 }.onChange(of: myManagedSettings.isActive) { newValue in
-                    toggleMonitoringPresed()
+                    toggleMonitoringPresed(to: newValue)
                 }
             }
             .foregroundColor(.black)
@@ -66,25 +68,24 @@ struct HomeView: View {
         }
     }
     
-    func toggleMonitoringPresed() {
-//        let userDefaults = UserDefaults(suiteName: "group.leaveylabs.screentime") //not sure if this would be reliable
-//        let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.leaveylabs.screentime") //this one should work.
-        //basically, each extension acts as its own independent app, a sandbox
-        //i can save info to the appGroupURL and read it in the sandboxes. that's all the extra data i can get from the sandboxes
-        
+    func toggleMonitoringPresed(to shouldMonitor: Bool) {
         switch AuthorizationCenter.shared.authorizationStatus {
         case .notDetermined:
             requestScreentimeAuthorization {
                 self.selectAppsPressed()
             }
         case .approved:
-            //toggle myManagedSettings activation
+            myManagedSettings.toggleMonitoringScreentime(to: shouldMonitor)
             break
         default:
             isGoToSettingsAlertPresented = true
             break
         }
     }
+    
+    private let BASE_URL = "https://api.unsplash.com"
+    private let ACCESS_TOKEN = "vI0pxOQWwiashIP1Yacp0ScKK5VsYuWzMZHkLFLkJFU"
+    private let SECRET_TOKEN = "HupENnZU6RfQSTbDhQevkIJgzns4NSxrbK7j7sYbjVs"
     
     func selectAppsPressed() {
         switch AuthorizationCenter.shared.authorizationStatus {

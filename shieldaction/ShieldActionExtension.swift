@@ -6,13 +6,20 @@
 //
 
 import ManagedSettings
+import Foundation
 
 // Override the functions below to customize the shield actions used in various situations.
 // The system provides a default response for any functions that your subclass doesn't override.
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class ShieldActionExtension: ShieldActionDelegate {
     
+    struct AppGroupData {
+        static let appGroup = "group.leaveylabs.screentime"
+        static let consecutiveTime = "consecutiveTime"
+    }
+
     override func handle(action: ShieldAction, for application: ApplicationToken, completionHandler: @escaping (ShieldActionResponse) -> Void) {
+        
         switch action {
         case .primaryButtonPressed:
             completionHandler(.close)

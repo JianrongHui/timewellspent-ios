@@ -17,9 +17,7 @@ struct timewellspent_iosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView(myManagedSettings: MyManagedSettings.shared)
-//                .environmentObject(model)
-//                .environmentObject(store)
+            ContentView()
         }
     }
     

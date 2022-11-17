@@ -15,46 +15,45 @@ import UIKit
 class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
     override func configuration(shielding application: Application) -> ShieldConfiguration {
-        // Customize the shield as needed for applications.
-        
-//        let appName = application.localizedDisplayName ?? "this app"
-        
         let bgColor = UIColor(hex: "#8C567A")
+        let appName = "your name" //application.localizedDisplayName ?? "your phone"
+        let body = "You've been using " + appName + " for a while.\n\nOpen up Mindberry for a mindfulness break."
+        let title = "Have a mindberry"
         return ShieldConfiguration(backgroundBlurStyle: .regular,
                                    backgroundColor: bgColor,
                                    icon: UIImage(named: "smileberry.png"),
-                                   title: ShieldConfiguration.Label(text: "Have a mindberry", color: .white),
-                                   subtitle: ShieldConfiguration.Label(text: "Open up Mindberry for a short mindfulness break", color: .white),
+                                   title: ShieldConfiguration.Label(text: title, color: .white),
+                                   subtitle: ShieldConfiguration.Label(text: body, color: .white),
                                    primaryButtonLabel: ShieldConfiguration.Label(text: "Close", color: bgColor),
                                    primaryButtonBackgroundColor: .white,
                                    secondaryButtonLabel: nil)
     }
     
     override func configuration(shielding webDomain: WebDomain) -> ShieldConfiguration {
-        // Customize the shield as needed for web domains.
-        
         let bgColor = UIColor(hex: "#8C567A")
+        let appName = "your phone"
+        let body = "You've been using " + appName + " for a while.\n\nOpen up Mindberry for a mindfulness break."
+        let title = "Have a mindberry"
         return ShieldConfiguration(backgroundBlurStyle: .regular,
                                    backgroundColor: bgColor,
                                    icon: UIImage(named: "smileberry.png"),
-                                   title: ShieldConfiguration.Label(text: "Have a mindberry", color: .white),
-                                   subtitle: ShieldConfiguration.Label(text: "Open up Mindberry for a short mindfulness break", color: .white),
+                                   title: ShieldConfiguration.Label(text: title, color: .white),
+                                   subtitle: ShieldConfiguration.Label(text: body, color: .white),
                                    primaryButtonLabel: ShieldConfiguration.Label(text: "Close", color: bgColor),
                                    primaryButtonBackgroundColor: .white,
                                    secondaryButtonLabel: nil)
     }
     
     override func configuration(shielding webDomain: WebDomain, in category: ActivityCategory) -> ShieldConfiguration {
-        // Customize the shield as needed for web domains shielded because of their category.
-        
-        let appName = category.localizedDisplayName ?? "this app"
-
         let bgColor = UIColor(hex: "#8C567A")
+        let appName = "your phone"
+        let body = "You've been using " + appName + " for a while.\n\nOpen up Mindberry for a mindfulness break."
+        let title = "Have a mindberry"
         return ShieldConfiguration(backgroundBlurStyle: .regular,
                                    backgroundColor: bgColor,
                                    icon: UIImage(named: "smileberry.png"),
-                                   title: ShieldConfiguration.Label(text: "Have a mindberry", color: .white),
-                                   subtitle: ShieldConfiguration.Label(text: "Open up Mindberry for a short mindfulness break", color: .white),
+                                   title: ShieldConfiguration.Label(text: title, color: .white),
+                                   subtitle: ShieldConfiguration.Label(text: body, color: .white),
                                    primaryButtonLabel: ShieldConfiguration.Label(text: "Close", color: bgColor),
                                    primaryButtonBackgroundColor: .white,
                                    secondaryButtonLabel: nil)
@@ -62,11 +61,16 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
     override func configuration(shielding application: Application, in category: ActivityCategory) -> ShieldConfiguration {
         let bgColor = UIColor(hex: "#8C567A")
+        let appName = "your phone" // application.localizedDisplayName ?? "your phone"
+        let body = "You've been using " + appName + " for a while.\n\nOpen up Mindberry for a mindfulness break."
+        let title = "Have a mindberry"
+//        let body = "Open the Mindberry app for a meditation with Rocky"
+//        let title = "Rocky says hi!"
         return ShieldConfiguration(backgroundBlurStyle: .regular,
                                    backgroundColor: bgColor,
                                    icon: UIImage(named: "smileberry.png"),
-                                   title: ShieldConfiguration.Label(text: "Have a mindberry", color: .white),
-                                   subtitle: ShieldConfiguration.Label(text: "Open up Mindberry for a short mindfulness break", color: .white),
+                                   title: ShieldConfiguration.Label(text: title, color: .white),
+                                   subtitle: ShieldConfiguration.Label(text: body, color: .white),
                                    primaryButtonLabel: ShieldConfiguration.Label(text: "Close", color: bgColor),
                                    primaryButtonBackgroundColor: .white,
                                    secondaryButtonLabel: nil)

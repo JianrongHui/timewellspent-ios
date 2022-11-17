@@ -4,6 +4,13 @@
 <dict>
 	<key>NSExtension</key>
 	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>RequestsOpenAccess</key>
+			<true/>
+		</dict>
+		<key>RequestsOpenAccess</key>
+		<true/>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.deviceactivity.monitor-extension</string>
 		<key>NSExtensionPrincipalClass</key>
