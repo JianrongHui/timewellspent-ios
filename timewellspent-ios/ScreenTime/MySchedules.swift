@@ -18,6 +18,7 @@ import FamilyControls
 
 extension DeviceActivityName {
     static let discouraged = Self("discouraged") //NOTE: if allowing for more than one, we should let the user generate the name on their end
+    static let mindfulBreak = Self("mindfulbreak")
 //    static let social = Self("social")
 }
 
@@ -29,11 +30,6 @@ extension ManagedSettingsStore.Name {
 extension DeviceActivityEvent.Name {
     static let mindfulnessInterruption = Self("mindfulnessInterruption")
 }
-
-//need to make a model which has a set of appplication tokens
-let mindfulnessInterruptionEvent: [DeviceActivityEvent.Name: DeviceActivityEvent] = [.mindfulnessInterruption: DeviceActivityEvent(applications: MyManagedSettings.shared.selectionToDiscourage.applicationTokens, categories: MyManagedSettings.shared.selectionToDiscourage.categoryTokens, webDomains: MyManagedSettings.shared.selectionToDiscourage.webDomainTokens, threshold: DateComponents(second: 5))] //after 5 seconds, the "didreachthreshold" is called
-
-
 
 //OLD APPROACH:::::
 

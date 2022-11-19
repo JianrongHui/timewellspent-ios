@@ -22,12 +22,14 @@ struct ContentView: View {
         if !isMeditationInProgress {
             HomeView(myManagedSettings: MyManagedSettings.shared)
         } else {
-            MeditationView().frame(maxWidth: .infinity, maxHeight: .infinity).environment(\.meditation, $isMeditationInProgress)
+            HomeView(myManagedSettings: MyManagedSettings.shared)
+//            MeditationView().frame(maxWidth: .infinity, maxHeight: .infinity).environment(\.meditation, $isMeditationInProgress)
         }
-        Text("").hidden()
+        Text("")
+            .hidden()
             .onChange(of: scenePhase) { newValue in
                 switch newValue{
-                case .active:
+                case .active, .background:
                     isMeditationInProgress = ManagedSettingsStore().isShieldOpen
                 default:
                     break

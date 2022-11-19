@@ -11,30 +11,10 @@ import Foundation
 
 import FirebaseCore
 import FirebaseFirestore
-
-public struct Session: Codable {
-    let beforeRating: Int
-    let afterRating: Int
-    let timestamp: Date
-}
-
-extension Encodable {
-    subscript(key: String) -> Any? {
-        return dictionary[key]
-    }
-    var dictionary: [String: Any] {
-        return (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(self))) as? [String: Any] ?? [:]
-    }
-}
-
+import UserNotifications
 
 // Optionally override any of the functions below.
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
-
-struct AppGroupData {
-    static let appGroup = "group.leaveylabs.screentime"
-    static let consecutiveTime = "consecutiveTime"
-}
 
 class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
@@ -43,46 +23,45 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
         
-        let userDefaults = UserDefaults(suiteName: AppGroupData.appGroup)
         
         //we need to make sure the hour is this hour
-        //the event might be auto called if it was the previous hour
+        //the event might be auto called if it was the previous hour?
         print("Starting monitoring. Hour is: ", Calendar.current.dateComponents([.hour, .minute], from: Date()).hour!)
+        
 
-//        guard
-//            let eventHour = Int(event.rawValue),
-//            let nowHour = Calendar.current.dateComponents([.hour], from: Date()).hour
-//        else { return }
-//
-//        userDefaults?.set(eventHour, forKey: "eventHour")
-//        userDefaults?.set(nowHour, forKey: "nowHour")
-//
-//        if eventHour == nowHour {
-        
-        //THATS FUCKING CRAZY IT WORKRREDDDDDDDD
-            FirebaseApp.configure()
-            let db = Firestore.firestore()
-            let currentSession = Session(beforeRating: 0, afterRating: 0, timestamp: Date())
-            db.collection("session").document(UUID().uuidString).setData(currentSession.dictionary)
-        
-            ManagedSettingsStore().shield.applicationCategories = .all()
-            ManagedSettingsStore().shield.webDomainCategories = .all()
-//        }
+        //NOTE: this cannot go in its own function. My own custom functions can't be called in this extension... but somehow, Firebase's "FirebaseApp.configure() does work?
+        ManagedSettingsStore().shield.webDomainCategories = .all()
+        ManagedSettingsStore().shield.applicationCategories = .all()
 
+        let userDefaults = UserDefaults(suiteName: AppGroupData.appGroup)
+        let notifsOn = userDefaults?.object(forKey: AppGroupData.notificationSetting) as! Bool
+        guard notifsOn else { return }
         
-        //TODO:
-        //ask to send a notification
-//        let url = URL(string: "\(BASE_URL)/photos/random")!
-//        var urlRequest = URLRequest(url: url)
-//        urlRequest.setValue("Client-ID \(ACCESS_TOKEN)", forHTTPHeaderField: "Authorization")
-//        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-//            if let data = data {
-//                //we have data
-//                userDefaults?.set("yes", forKey: "diditwork")
-////                print("WE GOT DATA data \(data)")
-//            }
-//        }.resume()
+        let content = UNMutableNotificationContent()
+        content.title = "Have a mindberry"
+        content.subtitle = "Tap to start a mindfulness break"
+        content.sound = nil
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false) //show this 0.6 seconds from now
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request)
         
+        let rightNow = Calendar.current.dateComponents([.hour, .minute, .second], from: .now)
+        var fifteenMinutesFromNow = rightNow
+        fifteenMinutesFromNow.minute! += 40 //must be at least 15 min interval. both must be in the future
+        let warningBeforehand = DateComponents(minute: 35)
+        let fifteenMinuteSchedule = DeviceActivitySchedule(intervalStart: rightNow,
+                                                           intervalEnd: fifteenMinutesFromNow,
+                                                           repeats: false,
+                                                           warningTime: warningBeforehand)
+        do {
+            try DeviceActivityCenter().startMonitoring(.mindfulBreak,
+                                                     during: fifteenMinuteSchedule)
+        } catch {
+            
+        }
+        
+        let thisHour = (Calendar.current.dateComponents([.hour], from: Date()).hour)!
+        DeviceActivityCenter().stopMonitoring([DeviceActivityName(String(thisHour))])
         
         //ALTERNATE APPROACH
         
@@ -135,10 +114,20 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     //our extension will be called for "interval did end", and we should remove the shield associated with the activity
     override func intervalDidEnd(for activity: DeviceActivityName) {
         super.intervalDidEnd(for: activity)
+        
     }
     
-    override func eventWillReachThresholdWarning(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
-        super.eventWillReachThresholdWarning(event, activity: activity)
+    override func intervalWillEndWarning(for activity: DeviceActivityName) {
+        super.intervalWillEndWarning(for: activity)
+
+        //if activity == .mindfulBreak { //unecessary check rn bc warnings are only generated for mindfulBreak
+        ManagedSettingsStore().clearAllSettings()
+        
+//        do {
+//            try DeviceActivityCenter().startMonitoring(String(thisHour), during: DeviceActivitySchedule(intervalStart: DateComponents(hour: thisHour, minute: 0), intervalEnd: DateComponents(hour: thisHour, minute: 59), repeats: true))
+//        } catch {
+//
+//        }
     }
     
 }

@@ -15,24 +15,29 @@ struct MeditationView: View {
     @State var breatheIn: Bool = false
     @Environment(\.meditation) var isMeditating
     
+    var previousRating: Int = 0
+    
     let breatheTimeInSeconds: UInt64 = 4
     
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .center, spacing: 20) {
             Text("Mindberry")
             Spacer()
             Text(isBreathing ? (breatheIn ? "Breathe in" : "Breathe out") : "Right now I'm feeling...")
-            VStack(spacing: 30) {
-                HStack(alignment: .center, spacing: 10) {
-                    ForEach(1..<6, id: \.self) { id in
-                        Button {
-                            handleButtonPress(id)
-                        } label: {
-                            Image("face" + String(id))
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 60)
+            HStack(alignment: .center, spacing: 10) {
+                ForEach(1..<6, id: \.self) { id in
+                    Button {
+                        let hasAnsweredBeforeQuestion = SessionService.shared.currentSession.beforeRating != 0
+                        if hasAnsweredBeforeQuestion {
+                            handleAfterButtonPress(id)
+                        } else {
+                            handleBeforeButtonPress(id)
                         }
+                    } label: {
+                        Image("face" + String(id))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 60)
                     }
                 }
             }
@@ -42,7 +47,7 @@ struct MeditationView: View {
                 .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 0)
                 .isHidden(!isBreathing, remove: true)
                 .scaleEffect(breatheIn ? 0.9 : 0.5)
-                .animation(.easeInOut(duration: Double(breatheTimeInSeconds) - 0.3), value: breatheIn)
+                .animation(.easeInOut(duration: Double(breatheTimeInSeconds)), value: breatheIn)
             Spacer()
         }
         .frame(
@@ -56,19 +61,17 @@ struct MeditationView: View {
         .fontWeight(.bold)
     }
     
-    func postToFirebase() {
-//        FirebaseApp.configure()
-//        let db = Firestore.firestore()
-//        let currentSession = Session(beforeRating: 1, afterRating: 4, timestamp: Date())
-//        db.collection("session").document(UUID().uuidString).setData(currentSession.dictionary)
-    }
-    
-    func handleButtonPress(_ index: Int) {
-        postToFirebase()
-        //do something with the index
+    func handleBeforeButtonPress(_ index: Int) {
+        SessionService.shared.currentSession.beforeRating = index
         Task {
             await startMeditation()
         }
+    }
+    
+    func handleAfterButtonPress(_ index: Int) {
+        SessionService.shared.currentSession.afterRating = index
+        SessionService.shared.currentSession.timestamp = Date().timeIntervalSince1970
+        SessionService.shared.postToFirebase()
     }
     
     func startMeditation() async {
@@ -91,22 +94,6 @@ struct MeditationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             MeditationView()
-            MeditationView()
         }
     }
-}
-
-extension Encodable {
-    subscript(key: String) -> Any? {
-        return dictionary[key]
-    }
-    var dictionary: [String: Any] {
-        return (try? JSONSerialization.jsonObject(with: JSONEncoder().encode(self))) as? [String: Any] ?? [:]
-    }
-}
-
-public struct Session: Codable {
-    let beforeRating: Int
-    let afterRating: Int
-    let timestamp: Date
 }

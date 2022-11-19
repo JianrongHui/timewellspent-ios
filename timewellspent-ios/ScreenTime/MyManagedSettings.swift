@@ -11,16 +11,15 @@ import ManagedSettings
 import DeviceActivity //device activity center
 import FamilyControls
 
-struct AppGroupData {
-    static let appGroup = "group.leaveylabs.screentime"
-    static let consecutiveTime = "consecutiveTime"
-}
-
 class MyManagedSettings: ObservableObject {
     
     static let shared = MyManagedSettings(applicationTokens: .init())
     
-    @Published var selectionToDiscourage: FamilyActivitySelection
+    @Published var selectionToDiscourage: FamilyActivitySelection {
+        didSet {
+            isActive = true
+        }
+    }
     @Published var isActive: Bool = false
     
     var mindfulnessInterruptionEvent: [DeviceActivityEvent.Name: DeviceActivityEvent] {
@@ -52,22 +51,13 @@ class MyManagedSettings: ObservableObject {
     
     //NOTE: The maximum number of activities that can be monitored at one time by an app and its extensions is twenty.
     func toggleMonitoringScreentime(to shouldMonitor: Bool) {
+        print("TOGGLING")
         ManagedSettingsStore().clearAllSettings()
-        
-        //why are we using htis activity center? shouldn't we be using the
-        //well... the events are tired to
         let deviceActivityCenter = DeviceActivityCenter()
         deviceActivityCenter.stopMonitoring()
-        //i dont think it actually matters
-        
-//        let userDefaults = UserDefaults(suiteName: AppGroupData.appGroup)
-//        print("event", userDefaults?.object(forKey: "eventHour"))
-//        print("now", userDefaults?.object(forKey: "nowHour"))
-//        userDefaults?.removeObject(forKey: "nowEvent")
-//        userDefaults?.removeObject(forKey: "nowHour")
 
         if shouldMonitor {
-            for i in 3..<23 {
+            for i in 5..<23 {
                 let hourSchedule = DeviceActivitySchedule(intervalStart: DateComponents(hour: i, minute: 0),
                                                           intervalEnd: DateComponents(hour: i, minute: 59),
                                                           repeats: true)

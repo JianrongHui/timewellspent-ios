@@ -44,6 +44,15 @@
 		47AFCE762926C4CA00E47FCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 47AFCE752926C4CA00E47FCD /* FirebaseFirestore */; };
 		47AFCE782926C4CA00E47FCD /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 47AFCE772926C4CA00E47FCD /* FirebaseFirestoreSwift */; };
 		47AFCE7A2926C52000E47FCD /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 47AFCE792926C52000E47FCD /* FirebaseFirestore */; };
+		47AFCE7D2926EF4100E47FCD /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE7C2926EF4100E47FCD /* Session.swift */; };
+		47AFCE7F2926EF5700E47FCD /* Encodable+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE7E2926EF5700E47FCD /* Encodable+Dict.swift */; };
+		47AFCE802926EF6F00E47FCD /* Encodable+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE7E2926EF5700E47FCD /* Encodable+Dict.swift */; };
+		47AFCE812926F0C300E47FCD /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE7C2926EF4100E47FCD /* Session.swift */; };
+		47AFCE832926F0CE00E47FCD /* AppGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE822926F0CE00E47FCD /* AppGroupData.swift */; };
+		47AFCE842926F0D100E47FCD /* AppGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE822926F0CE00E47FCD /* AppGroupData.swift */; };
+		47AFCE852926F3BD00E47FCD /* MySchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8CA291E9D4800F04C7F /* MySchedules.swift */; };
+		47AFCE862926F46400E47FCD /* MyManagedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8C2291E9D2700F04C7F /* MyManagedSettings.swift */; };
+		47AFCE88292867D000E47FCD /* CustomizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE87292867D000E47FCD /* CustomizeView.swift */; };
 		47C0B8C0291E9CC100F04C7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8BF291E9CC100F04C7F /* AppDelegate.swift */; };
 		47C0B8C6291E9D2700F04C7F /* MyManagedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8C2291E9D2700F04C7F /* MyManagedSettings.swift */; };
 		47C0B8C9291E9D2700F04C7F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8C5291E9D2700F04C7F /* HomeView.swift */; };
@@ -147,6 +156,10 @@
 		477740F929208A3200B0F795 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		47AFCE6D2926B1E400E47FCD /* View+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Hidden.swift"; sourceTree = "<group>"; };
 		47AFCE6F2926B82E00E47FCD /* Environments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environments.swift; sourceTree = "<group>"; };
+		47AFCE7C2926EF4100E47FCD /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		47AFCE7E2926EF5700E47FCD /* Encodable+Dict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Dict.swift"; sourceTree = "<group>"; };
+		47AFCE822926F0CE00E47FCD /* AppGroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupData.swift; sourceTree = "<group>"; };
+		47AFCE87292867D000E47FCD /* CustomizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeView.swift; sourceTree = "<group>"; };
 		47C0B8BF291E9CC100F04C7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47C0B8C2291E9D2700F04C7F /* MyManagedSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyManagedSettings.swift; sourceTree = "<group>"; };
 		47C0B8C5291E9D2700F04C7F /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -292,6 +305,7 @@
 		47572D652914CE9500793CF4 /* timewellspent-ios */ = {
 			isa = PBXGroup;
 			children = (
+				47AFCE7B2926EF3800E47FCD /* Model */,
 				4726B91A2920A65200C43C28 /* Constants */,
 				4733245C291F892500D3E616 /* GoogleService-Info.plist */,
 				47E46BB2291F35020036CC22 /* Info.plist */,
@@ -336,8 +350,17 @@
 			isa = PBXGroup;
 			children = (
 				47AFCE6D2926B1E400E47FCD /* View+Hidden.swift */,
+				47AFCE7E2926EF5700E47FCD /* Encodable+Dict.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		47AFCE7B2926EF3800E47FCD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				47AFCE7C2926EF4100E47FCD /* Session.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		47C0B8BE291E9C9900F04C7F /* Persistence? */ = {
@@ -362,13 +385,14 @@
 			isa = PBXGroup;
 			children = (
 				47572D662914CE9500793CF4 /* App.swift */,
+				477740F929208A3200B0F795 /* ContentView.swift */,
 				47C0B8C5291E9D2700F04C7F /* HomeView.swift */,
+				47AFCE87292867D000E47FCD /* CustomizeView.swift */,
+				4726B91829208B4700C43C28 /* MeditationView.swift */,
 				47C0B8D0291E9FA200F04C7F /* CircleImageUIView.swift */,
 				47C0B8D2291ECDEA00F04C7F /* FavoriteButton.swift */,
 				47C0B8D4291EEA4F00F04C7F /* HoverButton.swift */,
 				47C0B8D6291F288600F04C7F /* ButtonStyles.swift */,
-				477740F929208A3200B0F795 /* ContentView.swift */,
-				4726B91829208B4700C43C28 /* MeditationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -380,6 +404,7 @@
 				47AFCE6C2926B1D700E47FCD /* Extensions */,
 				47050738291F460C007996FF /* LaunchScreen.storyboard */,
 				47C0B8BF291E9CC100F04C7F /* AppDelegate.swift */,
+				47AFCE822926F0CE00E47FCD /* AppGroupData.swift */,
 			);
 			path = AdditionalFiles;
 			sourceTree = "<group>";
@@ -640,6 +665,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4705076A291F60B3007996FF /* DeviceActivityMonitorExtension.swift in Sources */,
+				47AFCE842926F0D100E47FCD /* AppGroupData.swift in Sources */,
+				47AFCE862926F46400E47FCD /* MyManagedSettings.swift in Sources */,
+				47AFCE802926EF6F00E47FCD /* Encodable+Dict.swift in Sources */,
+				47AFCE852926F3BD00E47FCD /* MySchedules.swift in Sources */,
+				47AFCE812926F0C300E47FCD /* Session.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +687,10 @@
 				47572D6E2914CE9500793CF4 /* ContentViewP.swift in Sources */,
 				47C0B8D3291ECDEA00F04C7F /* FavoriteButton.swift in Sources */,
 				47C0B8C0291E9CC100F04C7F /* AppDelegate.swift in Sources */,
+				47AFCE88292867D000E47FCD /* CustomizeView.swift in Sources */,
 				47C0B8CB291E9D4800F04C7F /* MySchedules.swift in Sources */,
+				47AFCE7F2926EF5700E47FCD /* Encodable+Dict.swift in Sources */,
+				47AFCE7D2926EF4100E47FCD /* Session.swift in Sources */,
 				4726B91E2920A6E300C43C28 /* View+PreviewDevice.swift in Sources */,
 				47C0B8D7291F288600F04C7F /* ButtonStyles.swift in Sources */,
 				477740FA29208A3200B0F795 /* ContentView.swift in Sources */,
@@ -665,6 +698,7 @@
 				47AFCE702926B82E00E47FCD /* Environments.swift in Sources */,
 				47572D692914CE9500793CF4 /* Persistence.swift in Sources */,
 				47AFCE6E2926B1E400E47FCD /* View+Hidden.swift in Sources */,
+				47AFCE832926F0CE00E47FCD /* AppGroupData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

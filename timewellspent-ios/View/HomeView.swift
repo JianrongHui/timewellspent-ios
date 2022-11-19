@@ -8,54 +8,70 @@
 import Foundation
 import SwiftUI
 import FamilyControls
+import DeviceActivity
+import ManagedSettings
+import UserNotifications
 
 struct HomeView: View {
     @ObservedObject var myManagedSettings: MyManagedSettings //ObservedObject is like a StateObject, except instead of being managed by the SwiftUI View, it's a separate entity
-    @State var isDiscouragedPresented = false
     @State private var isGoToSettingsAlertPresented = false
-
+    @State var notifsEnabled: Bool = UserDefaults(suiteName: AppGroupData.appGroup)?.object(forKey: AppGroupData.notificationSetting) as? Bool ?? false
+    @State var showCustomization: Bool = false
+    
     var body: some View {
         NavigationView {
-            VStack(alignment: .center, spacing: 30) {
+            VStack(alignment: .center, spacing: 20) {
+                Rectangle()
+                    .frame(height: 25)
+                    .foregroundColor(.clear)
+                VStack(spacing: 10) {
+                    Text("Mindberry")
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                        .fontWeight(.heavy)
+                    Text("Mindfulness Interruptions")
+                        .font(.body)
+                        .foregroundColor(.white)
+                        .fontWeight(.medium)
+                }
                 Spacer()
-//                CircleImageUIView()
-//                    .offset(y: -130)
-//                    .padding(.bottom, -130)
-//                if myManagedSettings.isActive {
-//                    Text("is active!")
-//                } else {
-//                    Text("is not active!")
-//                }
                 Image("smileberry").resizable().frame(width: 200, height: 200, alignment: .center)
                 Spacer()
                 Button {
+                    toggleMonitoringPresed()
+                } label: {
+                    Text(myManagedSettings.isActive ? "Enabled" : "Disabled")
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 40)
+                }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.white)
+                    .foregroundColor( myManagedSettings.isActive ? .green : .red)
+                    .font(.title3)
+                    .fontWeight(.heavy)
+                    .sheet(isPresented: $showCustomization) {
+                        CustomizeView(myManagedSettings: MyManagedSettings.shared)
+                            .presentationDetents([.medium])
+                    }
+                Button {
                     selectAppsPressed()
                 } label: {
-                    Text("Select Apps to Discourage")
+                    Text("Customize")
                         .frame(maxWidth: .infinity)
                         .frame(height: 40)
                 }
                     .buttonStyle(.borderedProminent)
                     .tint(.white)
                     .foregroundColor(.accentColor)
-                    .font(.headline)
+                    .font(.title3)
                     .fontWeight(.heavy)
-                    .familyActivityPicker(isPresented: $isDiscouragedPresented, selection: $myManagedSettings.selectionToDiscourage).onChange(of: myManagedSettings.selectionToDiscourage) { newSelection in
-                        if myManagedSettings.isActive {
-                            myManagedSettings.toggleMonitoringScreentime(to: true)
-                        }
+                    .sheet(isPresented: $showCustomization) {
+                        CustomizeView(myManagedSettings: MyManagedSettings.shared)
+                            .presentationDetents([.medium])
                     }
-
-                Toggle(isOn: $myManagedSettings.isActive) {
-                    Text(myManagedSettings.isActive ? "Monitoring Active" : "Monitoring Inactive")
-                        .fontWeight(.bold)
-                }.onChange(of: myManagedSettings.isActive) { newValue in
-                    toggleMonitoringPresed(to: newValue)
-                }
             }
-            .foregroundColor(.black)
+            .foregroundColor(.white)
             .padding(EdgeInsets(top: 0, leading: 25, bottom: 25, trailing: 25))
-            .navigationTitle("Mindberry")
             .background(.tint)
             .alert(isPresented: $isGoToSettingsAlertPresented) { () -> Alert in
                 Alert(title: Text("Share screen time in settings"),
@@ -68,7 +84,9 @@ struct HomeView: View {
         }
     }
     
-    func toggleMonitoringPresed(to shouldMonitor: Bool) {
+    func toggleMonitoringPresed() {
+        let shouldMonitor = !myManagedSettings.isActive
+        myManagedSettings.isActive = shouldMonitor
         switch AuthorizationCenter.shared.authorizationStatus {
         case .notDetermined:
             requestScreentimeAuthorization {
@@ -83,10 +101,6 @@ struct HomeView: View {
         }
     }
     
-    private let BASE_URL = "https://api.unsplash.com"
-    private let ACCESS_TOKEN = "vI0pxOQWwiashIP1Yacp0ScKK5VsYuWzMZHkLFLkJFU"
-    private let SECRET_TOKEN = "HupENnZU6RfQSTbDhQevkIJgzns4NSxrbK7j7sYbjVs"
-    
     func selectAppsPressed() {
         switch AuthorizationCenter.shared.authorizationStatus {
         case .notDetermined:
@@ -94,7 +108,7 @@ struct HomeView: View {
                 self.selectAppsPressed()
             }
         case .approved:
-            isDiscouragedPresented = true
+            showCustomization = true
         default:
             isGoToSettingsAlertPresented = true
             break

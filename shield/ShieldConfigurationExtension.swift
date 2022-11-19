@@ -14,11 +14,12 @@ import UIKit
 // Make sure that your class name matches the NSExtensionPrincipalClass in your Info.plist.
 class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
+    let bgColor = UIColor(hex: "#8C567A")
+    let title = "Have a mindberry"
+    let body = "Open Mindberry for a short mindfulness break."
+    
     override func configuration(shielding application: Application) -> ShieldConfiguration {
-        let bgColor = UIColor(hex: "#8C567A")
-        let appName = "your name" //application.localizedDisplayName ?? "your phone"
-        let body = "You've been using " + appName + " for a while.\n\nOpen up Mindberry for a mindfulness break."
-        let title = "Have a mindberry"
+//        let appName = "your name" //application.localizedDisplayName ?? "your phone"
         return ShieldConfiguration(backgroundBlurStyle: .regular,
                                    backgroundColor: bgColor,
                                    icon: UIImage(named: "smileberry.png"),
@@ -30,10 +31,6 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     }
     
     override func configuration(shielding webDomain: WebDomain) -> ShieldConfiguration {
-        let bgColor = UIColor(hex: "#8C567A")
-        let appName = "your phone"
-        let body = "You've been using " + appName + " for a while.\n\nOpen up Mindberry for a mindfulness break."
-        let title = "Have a mindberry"
         return ShieldConfiguration(backgroundBlurStyle: .regular,
                                    backgroundColor: bgColor,
                                    icon: UIImage(named: "smileberry.png"),
@@ -45,10 +42,6 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     }
     
     override func configuration(shielding webDomain: WebDomain, in category: ActivityCategory) -> ShieldConfiguration {
-        let bgColor = UIColor(hex: "#8C567A")
-        let appName = "your phone"
-        let body = "You've been using " + appName + " for a while.\n\nOpen up Mindberry for a mindfulness break."
-        let title = "Have a mindberry"
         return ShieldConfiguration(backgroundBlurStyle: .regular,
                                    backgroundColor: bgColor,
                                    icon: UIImage(named: "smileberry.png"),
@@ -60,12 +53,6 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     }
     
     override func configuration(shielding application: Application, in category: ActivityCategory) -> ShieldConfiguration {
-        let bgColor = UIColor(hex: "#8C567A")
-        let appName = "your phone" // application.localizedDisplayName ?? "your phone"
-        let body = "You've been using " + appName + " for a while.\n\nOpen up Mindberry for a mindfulness break."
-        let title = "Have a mindberry"
-//        let body = "Open the Mindberry app for a meditation with Rocky"
-//        let title = "Rocky says hi!"
         return ShieldConfiguration(backgroundBlurStyle: .regular,
                                    backgroundColor: bgColor,
                                    icon: UIImage(named: "smileberry.png"),
