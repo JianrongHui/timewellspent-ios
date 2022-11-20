@@ -23,7 +23,7 @@ struct DemoView: View {
                 Text("Welcome to Mindberry.")
                     .font(.title)
                     .fontWeight(.bold)
-                Text("Get reminders to put your phone down after using it for a while.")
+                Text("Get reminders to put your phone down after using it for an extended period of time.")
                     .multilineTextAlignment(.center)
                 Spacer()
                 Button {

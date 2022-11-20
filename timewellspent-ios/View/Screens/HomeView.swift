@@ -23,7 +23,7 @@ struct HomeView: View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
                 Rectangle()
-                    .frame(height: 25)
+                    .frame(height: 15)
                     .foregroundColor(.clear)
                 VStack(spacing: 10) {
                     HStack(alignment: .center, spacing: 10) {

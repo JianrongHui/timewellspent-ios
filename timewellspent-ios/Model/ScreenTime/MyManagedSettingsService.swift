@@ -40,7 +40,6 @@ class MyManagedSettingsService: NSObject, ObservableObject {
     func toggleMonitoringScreentime(to shouldMonitor: Bool) {
         managedSettings.isActive = shouldMonitor
         managedSettings.hasBeenActivatedOnce = true
-        print("TOGGLING")
         ManagedSettingsStore().clearAllSettings()
         let deviceActivityCenter = DeviceActivityCenter()
         deviceActivityCenter.stopMonitoring()
