@@ -33,8 +33,8 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         ManagedSettingsStore().shield.webDomainCategories = .all()
         ManagedSettingsStore().shield.applicationCategories = .all()
 
-        let userDefaults = UserDefaults(suiteName: AppGroupData.appGroup)
-        let notifsOn = userDefaults?.object(forKey: AppGroupData.notificationSetting) as! Bool
+        let userDefaults = UserDefaults(suiteName: AppGroupData.appGroupName)
+        let notifsOn = userDefaults?.object(forKey: AppGroupData.notificationSettingKey) as! Bool
         guard notifsOn else { return }
         
         let content = UNMutableNotificationContent()

@@ -82,7 +82,7 @@ struct MeditationView: View {
                 breatheIn = !breatheIn
                 try await Task.sleep(nanoseconds: breatheTimeInSeconds * NSEC_PER_SEC)
             }
-            MyManagedSettings.shared.pauseUntilNextHour()
+            await MyManagedSettingsService.shared.pauseUntilNextHour()
             isMeditating.wrappedValue.toggle()
         } catch {
             print("lmfao")

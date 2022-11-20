@@ -18,6 +18,17 @@
 		47050767291F60B3007996FF /* DeviceActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47050766291F60B3007996FF /* DeviceActivity.framework */; };
 		4705076A291F60B3007996FF /* DeviceActivityMonitorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47050769291F60B3007996FF /* DeviceActivityMonitorExtension.swift */; };
 		4705076F291F60B3007996FF /* activity-monitor.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 47050765291F60B3007996FF /* activity-monitor.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		47183C4F2929B86100AB6A38 /* MySchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8CA291E9D4800F04C7F /* MySchedules.swift */; };
+		47183C502929B86C00AB6A38 /* MyManagedSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8C2291E9D2700F04C7F /* MyManagedSettingsService.swift */; };
+		47183C512929B86F00AB6A38 /* MyManagedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5563F2929B17500CCB9B4 /* MyManagedSettings.swift */; };
+		47183C532929BC7A00AB6A38 /* DurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C522929BC7A00AB6A38 /* DurationPickerView.swift */; };
+		47183C552929E3F700AB6A38 /* MultiComponentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C542929E3F700AB6A38 /* MultiComponentPicker.swift */; };
+		47183C562929E55600AB6A38 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5563B2929AEC000CCB9B4 /* Device.swift */; };
+		47183C572929E55600AB6A38 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F556392929AE3F00CCB9B4 /* DeviceService.swift */; };
+		47183C5B2929EF2A00AB6A38 /* AppPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C5A2929EF2A00AB6A38 /* AppPickerView.swift */; };
+		47183C5D2929F11F00AB6A38 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C5C2929F11F00AB6A38 /* Color+Hex.swift */; };
+		47183C5F2929F16600AB6A38 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C5E2929F16600AB6A38 /* Constants.swift */; };
+		47183C61292A009400AB6A38 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C60292A009400AB6A38 /* DemoView.swift */; };
 		4726B91929208B4700C43C28 /* MeditationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4726B91829208B4700C43C28 /* MeditationView.swift */; };
 		4726B91C2920A65D00C43C28 /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4726B91B2920A65D00C43C28 /* DeviceConstants.swift */; };
 		4726B91E2920A6E300C43C28 /* View+PreviewDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4726B91D2920A6E300C43C28 /* View+PreviewDevice.swift */; };
@@ -50,17 +61,20 @@
 		47AFCE812926F0C300E47FCD /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE7C2926EF4100E47FCD /* Session.swift */; };
 		47AFCE832926F0CE00E47FCD /* AppGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE822926F0CE00E47FCD /* AppGroupData.swift */; };
 		47AFCE842926F0D100E47FCD /* AppGroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE822926F0CE00E47FCD /* AppGroupData.swift */; };
-		47AFCE852926F3BD00E47FCD /* MySchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8CA291E9D4800F04C7F /* MySchedules.swift */; };
-		47AFCE862926F46400E47FCD /* MyManagedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8C2291E9D2700F04C7F /* MyManagedSettings.swift */; };
 		47AFCE88292867D000E47FCD /* CustomizeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47AFCE87292867D000E47FCD /* CustomizeView.swift */; };
 		47C0B8C0291E9CC100F04C7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8BF291E9CC100F04C7F /* AppDelegate.swift */; };
-		47C0B8C6291E9D2700F04C7F /* MyManagedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8C2291E9D2700F04C7F /* MyManagedSettings.swift */; };
+		47C0B8C6291E9D2700F04C7F /* MyManagedSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8C2291E9D2700F04C7F /* MyManagedSettingsService.swift */; };
 		47C0B8C9291E9D2700F04C7F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8C5291E9D2700F04C7F /* HomeView.swift */; };
 		47C0B8CB291E9D4800F04C7F /* MySchedules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8CA291E9D4800F04C7F /* MySchedules.swift */; };
 		47C0B8D1291E9FA200F04C7F /* CircleImageUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8D0291E9FA200F04C7F /* CircleImageUIView.swift */; };
 		47C0B8D3291ECDEA00F04C7F /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8D2291ECDEA00F04C7F /* FavoriteButton.swift */; };
 		47C0B8D5291EEA4F00F04C7F /* HoverButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8D4291EEA4F00F04C7F /* HoverButton.swift */; };
 		47C0B8D7291F288600F04C7F /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C0B8D6291F288600F04C7F /* ButtonStyles.swift */; };
+		47F5563A2929AE3F00CCB9B4 /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F556392929AE3F00CCB9B4 /* DeviceService.swift */; };
+		47F5563C2929AEC000CCB9B4 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5563B2929AEC000CCB9B4 /* Device.swift */; };
+		47F5563E2929B05000CCB9B4 /* FamilyActivity+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5563D2929B05000CCB9B4 /* FamilyActivity+String.swift */; };
+		47F556402929B17500CCB9B4 /* MyManagedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5563F2929B17500CCB9B4 /* MyManagedSettings.swift */; };
+		47F556422929B27A00CCB9B4 /* ManagedSettingsStore+isShieldOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F556412929B27A00CCB9B4 /* ManagedSettingsStore+isShieldOpen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +148,12 @@
 		47050769291F60B3007996FF /* DeviceActivityMonitorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivityMonitorExtension.swift; sourceTree = "<group>"; };
 		4705076B291F60B3007996FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4705076C291F60B3007996FF /* activity_monitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = activity_monitor.entitlements; sourceTree = "<group>"; };
+		47183C522929BC7A00AB6A38 /* DurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationPickerView.swift; sourceTree = "<group>"; };
+		47183C542929E3F700AB6A38 /* MultiComponentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiComponentPicker.swift; sourceTree = "<group>"; };
+		47183C5A2929EF2A00AB6A38 /* AppPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPickerView.swift; sourceTree = "<group>"; };
+		47183C5C2929F11F00AB6A38 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		47183C5E2929F16600AB6A38 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		47183C60292A009400AB6A38 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		4726B91829208B4700C43C28 /* MeditationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationView.swift; sourceTree = "<group>"; };
 		4726B91B2920A65D00C43C28 /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 		4726B91D2920A6E300C43C28 /* View+PreviewDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+PreviewDevice.swift"; sourceTree = "<group>"; };
@@ -161,7 +181,7 @@
 		47AFCE822926F0CE00E47FCD /* AppGroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupData.swift; sourceTree = "<group>"; };
 		47AFCE87292867D000E47FCD /* CustomizeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeView.swift; sourceTree = "<group>"; };
 		47C0B8BF291E9CC100F04C7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		47C0B8C2291E9D2700F04C7F /* MyManagedSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyManagedSettings.swift; sourceTree = "<group>"; };
+		47C0B8C2291E9D2700F04C7F /* MyManagedSettingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyManagedSettingsService.swift; sourceTree = "<group>"; };
 		47C0B8C5291E9D2700F04C7F /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		47C0B8CA291E9D4800F04C7F /* MySchedules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySchedules.swift; sourceTree = "<group>"; };
 		47C0B8D0291E9FA200F04C7F /* CircleImageUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageUIView.swift; sourceTree = "<group>"; };
@@ -169,6 +189,11 @@
 		47C0B8D4291EEA4F00F04C7F /* HoverButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverButton.swift; sourceTree = "<group>"; };
 		47C0B8D6291F288600F04C7F /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		47E46BB2291F35020036CC22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		47F556392929AE3F00CCB9B4 /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
+		47F5563B2929AEC000CCB9B4 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		47F5563D2929B05000CCB9B4 /* FamilyActivity+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FamilyActivity+String.swift"; sourceTree = "<group>"; };
+		47F5563F2929B17500CCB9B4 /* MyManagedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyManagedSettings.swift; sourceTree = "<group>"; };
+		47F556412929B27A00CCB9B4 /* ManagedSettingsStore+isShieldOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedSettingsStore+isShieldOpen.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,11 +291,37 @@
 			path = "activity-monitor";
 			sourceTree = "<group>";
 		};
+		47183C582929EDB000AB6A38 /* ComponentViews */ = {
+			isa = PBXGroup;
+			children = (
+				47C0B8D6291F288600F04C7F /* ButtonStyles.swift */,
+				47183C542929E3F700AB6A38 /* MultiComponentPicker.swift */,
+				47C0B8D4291EEA4F00F04C7F /* HoverButton.swift */,
+				47C0B8D2291ECDEA00F04C7F /* FavoriteButton.swift */,
+				47C0B8D0291E9FA200F04C7F /* CircleImageUIView.swift */,
+			);
+			path = ComponentViews;
+			sourceTree = "<group>";
+		};
+		47183C592929EDC800AB6A38 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				47C0B8C5291E9D2700F04C7F /* HomeView.swift */,
+				4726B91829208B4700C43C28 /* MeditationView.swift */,
+				47AFCE87292867D000E47FCD /* CustomizeView.swift */,
+				47183C522929BC7A00AB6A38 /* DurationPickerView.swift */,
+				47183C5A2929EF2A00AB6A38 /* AppPickerView.swift */,
+				47183C60292A009400AB6A38 /* DemoView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		4726B91A2920A65200C43C28 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
 				4726B91B2920A65D00C43C28 /* DeviceConstants.swift */,
 				4726B91D2920A6E300C43C28 /* View+PreviewDevice.swift */,
+				47183C5E2929F16600AB6A38 /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -305,16 +356,14 @@
 		47572D652914CE9500793CF4 /* timewellspent-ios */ = {
 			isa = PBXGroup;
 			children = (
-				47AFCE7B2926EF3800E47FCD /* Model */,
-				4726B91A2920A65200C43C28 /* Constants */,
 				4733245C291F892500D3E616 /* GoogleService-Info.plist */,
 				47E46BB2291F35020036CC22 /* Info.plist */,
 				47572D712914CE9600793CF4 /* timewellspent_ios.entitlements */,
 				47572D6F2914CE9600793CF4 /* Assets.xcassets */,
 				47572D6A2914CE9500793CF4 /* timewellspent_ios.xcdatamodeld */,
-				47C0B8CF291E9F0800F04C7F /* AdditionalFiles */,
+				47AFCE7B2926EF3800E47FCD /* Model */,
 				47C0B8CE291E9DC500F04C7F /* View */,
-				47C0B8C1291E9D2700F04C7F /* ScreenTime */,
+				47C0B8CF291E9F0800F04C7F /* AdditionalFiles */,
 				47C0B8BE291E9C9900F04C7F /* Persistence? */,
 				47572D722914CE9600793CF4 /* Preview Content */,
 			);
@@ -351,6 +400,9 @@
 			children = (
 				47AFCE6D2926B1E400E47FCD /* View+Hidden.swift */,
 				47AFCE7E2926EF5700E47FCD /* Encodable+Dict.swift */,
+				47F5563D2929B05000CCB9B4 /* FamilyActivity+String.swift */,
+				47F556412929B27A00CCB9B4 /* ManagedSettingsStore+isShieldOpen.swift */,
+				47183C5C2929F11F00AB6A38 /* Color+Hex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -358,6 +410,10 @@
 		47AFCE7B2926EF3800E47FCD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				47C0B8C1291E9D2700F04C7F /* ScreenTime */,
+				47F5563B2929AEC000CCB9B4 /* Device.swift */,
+				47F556392929AE3F00CCB9B4 /* DeviceService.swift */,
+				47AFCE822926F0CE00E47FCD /* AppGroupData.swift */,
 				47AFCE7C2926EF4100E47FCD /* Session.swift */,
 			);
 			path = Model;
@@ -375,7 +431,8 @@
 		47C0B8C1291E9D2700F04C7F /* ScreenTime */ = {
 			isa = PBXGroup;
 			children = (
-				47C0B8C2291E9D2700F04C7F /* MyManagedSettings.swift */,
+				47F5563F2929B17500CCB9B4 /* MyManagedSettings.swift */,
+				47C0B8C2291E9D2700F04C7F /* MyManagedSettingsService.swift */,
 				47C0B8CA291E9D4800F04C7F /* MySchedules.swift */,
 			);
 			path = ScreenTime;
@@ -386,13 +443,9 @@
 			children = (
 				47572D662914CE9500793CF4 /* App.swift */,
 				477740F929208A3200B0F795 /* ContentView.swift */,
-				47C0B8C5291E9D2700F04C7F /* HomeView.swift */,
-				47AFCE87292867D000E47FCD /* CustomizeView.swift */,
-				4726B91829208B4700C43C28 /* MeditationView.swift */,
-				47C0B8D0291E9FA200F04C7F /* CircleImageUIView.swift */,
-				47C0B8D2291ECDEA00F04C7F /* FavoriteButton.swift */,
-				47C0B8D4291EEA4F00F04C7F /* HoverButton.swift */,
-				47C0B8D6291F288600F04C7F /* ButtonStyles.swift */,
+				47183C592929EDC800AB6A38 /* Screens */,
+				47183C582929EDB000AB6A38 /* ComponentViews */,
+				47AFCE6F2926B82E00E47FCD /* Environments.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -400,11 +453,10 @@
 		47C0B8CF291E9F0800F04C7F /* AdditionalFiles */ = {
 			isa = PBXGroup;
 			children = (
-				47AFCE6F2926B82E00E47FCD /* Environments.swift */,
+				47C0B8BF291E9CC100F04C7F /* AppDelegate.swift */,
+				4726B91A2920A65200C43C28 /* Constants */,
 				47AFCE6C2926B1D700E47FCD /* Extensions */,
 				47050738291F460C007996FF /* LaunchScreen.storyboard */,
-				47C0B8BF291E9CC100F04C7F /* AppDelegate.swift */,
-				47AFCE822926F0CE00E47FCD /* AppGroupData.swift */,
 			);
 			path = AdditionalFiles;
 			sourceTree = "<group>";
@@ -666,10 +718,13 @@
 			files = (
 				4705076A291F60B3007996FF /* DeviceActivityMonitorExtension.swift in Sources */,
 				47AFCE842926F0D100E47FCD /* AppGroupData.swift in Sources */,
-				47AFCE862926F46400E47FCD /* MyManagedSettings.swift in Sources */,
+				47183C502929B86C00AB6A38 /* MyManagedSettingsService.swift in Sources */,
 				47AFCE802926EF6F00E47FCD /* Encodable+Dict.swift in Sources */,
-				47AFCE852926F3BD00E47FCD /* MySchedules.swift in Sources */,
+				47183C4F2929B86100AB6A38 /* MySchedules.swift in Sources */,
+				47183C512929B86F00AB6A38 /* MyManagedSettings.swift in Sources */,
 				47AFCE812926F0C300E47FCD /* Session.swift in Sources */,
+				47183C562929E55600AB6A38 /* Device.swift in Sources */,
+				47183C572929E55600AB6A38 /* DeviceService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,17 +735,25 @@
 				4726B91C2920A65D00C43C28 /* DeviceConstants.swift in Sources */,
 				47C0B8D5291EEA4F00F04C7F /* HoverButton.swift in Sources */,
 				47572D6C2914CE9500793CF4 /* timewellspent_ios.xcdatamodeld in Sources */,
+				47F5563E2929B05000CCB9B4 /* FamilyActivity+String.swift in Sources */,
 				4726B91929208B4700C43C28 /* MeditationView.swift in Sources */,
+				47F556422929B27A00CCB9B4 /* ManagedSettingsStore+isShieldOpen.swift in Sources */,
 				47572D672914CE9500793CF4 /* App.swift in Sources */,
+				47183C5F2929F16600AB6A38 /* Constants.swift in Sources */,
 				47C0B8C9291E9D2700F04C7F /* HomeView.swift in Sources */,
-				47C0B8C6291E9D2700F04C7F /* MyManagedSettings.swift in Sources */,
+				47C0B8C6291E9D2700F04C7F /* MyManagedSettingsService.swift in Sources */,
 				47572D6E2914CE9500793CF4 /* ContentViewP.swift in Sources */,
 				47C0B8D3291ECDEA00F04C7F /* FavoriteButton.swift in Sources */,
 				47C0B8C0291E9CC100F04C7F /* AppDelegate.swift in Sources */,
+				47183C5B2929EF2A00AB6A38 /* AppPickerView.swift in Sources */,
+				47F5563A2929AE3F00CCB9B4 /* DeviceService.swift in Sources */,
 				47AFCE88292867D000E47FCD /* CustomizeView.swift in Sources */,
+				47183C532929BC7A00AB6A38 /* DurationPickerView.swift in Sources */,
 				47C0B8CB291E9D4800F04C7F /* MySchedules.swift in Sources */,
 				47AFCE7F2926EF5700E47FCD /* Encodable+Dict.swift in Sources */,
 				47AFCE7D2926EF4100E47FCD /* Session.swift in Sources */,
+				47F5563C2929AEC000CCB9B4 /* Device.swift in Sources */,
+				47183C552929E3F700AB6A38 /* MultiComponentPicker.swift in Sources */,
 				4726B91E2920A6E300C43C28 /* View+PreviewDevice.swift in Sources */,
 				47C0B8D7291F288600F04C7F /* ButtonStyles.swift in Sources */,
 				477740FA29208A3200B0F795 /* ContentView.swift in Sources */,
@@ -698,7 +761,10 @@
 				47AFCE702926B82E00E47FCD /* Environments.swift in Sources */,
 				47572D692914CE9500793CF4 /* Persistence.swift in Sources */,
 				47AFCE6E2926B1E400E47FCD /* View+Hidden.swift in Sources */,
+				47F556402929B17500CCB9B4 /* MyManagedSettings.swift in Sources */,
 				47AFCE832926F0CE00E47FCD /* AppGroupData.swift in Sources */,
+				47183C61292A009400AB6A38 /* DemoView.swift in Sources */,
+				47183C5D2929F11F00AB6A38 /* Color+Hex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,30 +10,18 @@ import ManagedSettings
 
 struct ContentView: View {
     
-    //i guess we need a check for when they meditated
-    //well... no we don't want that
-    // we want to really make sure that the shield doesn't present itself during the rest of that hour
-    //this gets complicated...
-    
     @Environment(\.scenePhase) var scenePhase
     @State var isMeditationInProgress: Bool = ManagedSettingsStore().isShieldOpen
 
     var body: some View {
-        if !isMeditationInProgress {
-            HomeView(myManagedSettings: MyManagedSettings.shared)
-        } else {
-            HomeView(myManagedSettings: MyManagedSettings.shared)
-//            MeditationView().frame(maxWidth: .infinity, maxHeight: .infinity).environment(\.meditation, $isMeditationInProgress)
-        }
-        Text("")
-            .hidden()
+        HomeView(myManagedSettings: MyManagedSettingsService.shared)
+            .isHidden(isMeditationInProgress, remove: true)
+        
+        MeditationView().frame(maxWidth: .infinity, maxHeight: .infinity)
+            .isHidden(!isMeditationInProgress, remove: true)
+            .environment(\.meditation, $isMeditationInProgress)
             .onChange(of: scenePhase) { newValue in
-                switch newValue{
-                case .active, .background:
-                    isMeditationInProgress = ManagedSettingsStore().isShieldOpen
-                default:
-                    break
-                }
+                isMeditationInProgress = ManagedSettingsStore().isShieldOpen
             }
     }
 }

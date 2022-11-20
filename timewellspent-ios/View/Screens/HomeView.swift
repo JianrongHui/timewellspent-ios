@@ -13,10 +13,11 @@ import ManagedSettings
 import UserNotifications
 
 struct HomeView: View {
-    @ObservedObject var myManagedSettings: MyManagedSettings //ObservedObject is like a StateObject, except instead of being managed by the SwiftUI View, it's a separate entity
+    @ObservedObject var myManagedSettings: MyManagedSettingsService //ObservedObject is like a StateObject, except instead of being managed by the SwiftUI View, it's a separate entity
     @State private var isGoToSettingsAlertPresented = false
-    @State var notifsEnabled: Bool = UserDefaults(suiteName: AppGroupData.appGroup)?.object(forKey: AppGroupData.notificationSetting) as? Bool ?? false
+    @State var notifsEnabled: Bool = DeviceService.shared.getNotificationSetting() ?? false
     @State var showCustomization: Bool = false
+    @State var showDemo: Bool = !MyManagedSettingsService.shared.managedSettings.hasBeenActivatedOnce
     
     var body: some View {
         NavigationView {
@@ -25,34 +26,50 @@ struct HomeView: View {
                     .frame(height: 25)
                     .foregroundColor(.clear)
                 VStack(spacing: 10) {
-                    Text("Mindberry")
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
+                    HStack(alignment: .center, spacing: 10) {
+                        Spacer()
+                        Button {} label: {
+                            Image(systemName: "questionmark.circle")
+                        }.hidden()
+                        Text("Mindberry")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .fontWeight(.heavy)
+                            .font(.body)
+                        Button {
+                            showDemo = true
+                        } label: {
+                            Image(systemName: "questionmark.circle")
+                        }
+                        .sheet(isPresented: $showDemo) {
+                            DemoView(showDemo: $showDemo)
+                        }
+                        Spacer()
+                    }
                     Text("Mindfulness Interruptions")
-                        .font(.body)
                         .foregroundColor(.white)
                         .fontWeight(.medium)
                 }
+                .onAppear {
+                    print(AuthorizationCenter.shared.authorizationStatus)
+                }
                 Spacer()
-                Image("smileberry").resizable().frame(width: 200, height: 200, alignment: .center)
+                Image("smileberry-xl")
+                    .resizable()
+                    .frame(width: 200, height: 200, alignment: .center)
                 Spacer()
                 Button {
                     toggleMonitoringPresed()
                 } label: {
-                    Text(myManagedSettings.isActive ? "Enabled" : "Disabled")
+                    Text(myManagedSettings.managedSettings.isActive ? "Enabled" : "Disabled")
                         .frame(maxWidth: .infinity)
                         .frame(height: 40)
                 }
                     .buttonStyle(.borderedProminent)
-                    .tint(.white)
-                    .foregroundColor( myManagedSettings.isActive ? .green : .red)
+                    .tint(myManagedSettings.managedSettings.isActive ? .green.opacity(0.8) : .red.opacity(0.8))
+                    .foregroundColor(.white)
                     .font(.title3)
                     .fontWeight(.heavy)
-                    .sheet(isPresented: $showCustomization) {
-                        CustomizeView(myManagedSettings: MyManagedSettings.shared)
-                            .presentationDetents([.medium])
-                    }
                 Button {
                     selectAppsPressed()
                 } label: {
@@ -66,13 +83,16 @@ struct HomeView: View {
                     .font(.title3)
                     .fontWeight(.heavy)
                     .sheet(isPresented: $showCustomization) {
-                        CustomizeView(myManagedSettings: MyManagedSettings.shared)
+                        CustomizeView(myMSS: MyManagedSettingsService.shared, showCustomization: $showCustomization)
                             .presentationDetents([.medium])
                     }
             }
-            .foregroundColor(.white)
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity,
+                alignment: .center
+            )
             .padding(EdgeInsets(top: 0, leading: 25, bottom: 25, trailing: 25))
-            .background(.tint)
             .alert(isPresented: $isGoToSettingsAlertPresented) { () -> Alert in
                 Alert(title: Text("Share screen time in settings"),
                       message: Text(""),
@@ -81,18 +101,19 @@ struct HomeView: View {
 //                    isGoToSettingsAlertPresented(false)
                 }), secondaryButton: .destructive(Text("Cancel")))
             }
+            .background(.tint)
+            .foregroundColor(.white)
         }
     }
     
     func toggleMonitoringPresed() {
-        let shouldMonitor = !myManagedSettings.isActive
-        myManagedSettings.isActive = shouldMonitor
         switch AuthorizationCenter.shared.authorizationStatus {
         case .notDetermined:
-            requestScreentimeAuthorization {
-                self.selectAppsPressed()
+            MyManagedSettingsService.requestScreentimeAuthorization {
+                self.toggleMonitoringPresed()
             }
         case .approved:
+            let shouldMonitor = !myManagedSettings.managedSettings.isActive
             myManagedSettings.toggleMonitoringScreentime(to: shouldMonitor)
             break
         default:
@@ -104,7 +125,7 @@ struct HomeView: View {
     func selectAppsPressed() {
         switch AuthorizationCenter.shared.authorizationStatus {
         case .notDetermined:
-            requestScreentimeAuthorization {
+            MyManagedSettingsService.requestScreentimeAuthorization {
                 self.selectAppsPressed()
             }
         case .approved:
@@ -119,6 +140,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(myManagedSettings: MyManagedSettings.shared)
+        HomeView(myManagedSettings: MyManagedSettingsService.shared)
     }
 }

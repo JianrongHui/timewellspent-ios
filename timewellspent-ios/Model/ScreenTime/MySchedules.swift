@@ -64,11 +64,11 @@ extension DeviceActivityEvent.Name {
 }
 
 //either create: 25 
-let fiveMinuteIntervalEvents: [DeviceActivityEvent.Name: DeviceActivityEvent] =
-    [.one: DeviceActivityEvent(applications: MyManagedSettings.shared.selectionToDiscourage.applicationTokens,
-                               categories: MyManagedSettings.shared.selectionToDiscourage.categoryTokens,
-                               webDomains: MyManagedSettings.shared.selectionToDiscourage.webDomainTokens,
-                               threshold: DateComponents(second: 5)),]
+//let fiveMinuteIntervalEvents: [DeviceActivityEvent.Name: DeviceActivityEvent] =
+//    [.one: DeviceActivityEvent(applications: MyManagedSettingsService.shared.managedSettings.selectionToDiscourage.applicationTokens,
+//                               categories: MyManagedSettingsService.shared.managedSettings.selectionToDiscourage.categoryTokens,
+//                               webDomains: MyManagedSettingsService.shared.managedSettings.selectionToDiscourage.webDomainTokens,
+//                               threshold: DateComponents(second: 5)),]
 //     .two: DeviceActivityEvent(applications: MyManagedSettings.shared.selectionToDiscourage.applicationTokens,
 //                                categories: MyManagedSettings.shared.selectionToDiscourage.categoryTokens,
 //                                webDomains: MyManagedSettings.shared.selectionToDiscourage.webDomainTokens,
