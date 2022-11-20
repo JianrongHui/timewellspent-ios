@@ -16,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        
+        _ = try? isUpdateAvailable { (isUpdateAvailable, error) in
+            if let error = error {
+                print(error)
+            } else if let isUpdateAvailable = isUpdateAvailable {
+                guard isUpdateAvailable else { return }
+//                self.wasUpdateFoundAvailable = true
+                //DO SOMETHING SINCE UPDATE IS AVAILABLE
+            }
+        }
+        
         return true
     }
 

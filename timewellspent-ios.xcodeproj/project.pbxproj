@@ -29,6 +29,8 @@
 		47183C5D2929F11F00AB6A38 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C5C2929F11F00AB6A38 /* Color+Hex.swift */; };
 		47183C5F2929F16600AB6A38 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C5E2929F16600AB6A38 /* Constants.swift */; };
 		47183C61292A009400AB6A38 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C60292A009400AB6A38 /* DemoView.swift */; };
+		47183C63292A939800AB6A38 /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C62292A939800AB6A38 /* AppStoreReviewManager.swift */; };
+		47183C65292A967300AB6A38 /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C64292A967300AB6A38 /* RemoteConfig.swift */; };
 		4726B91929208B4700C43C28 /* MeditationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4726B91829208B4700C43C28 /* MeditationView.swift */; };
 		4726B91C2920A65D00C43C28 /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4726B91B2920A65D00C43C28 /* DeviceConstants.swift */; };
 		4726B91E2920A6E300C43C28 /* View+PreviewDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4726B91D2920A6E300C43C28 /* View+PreviewDevice.swift */; };
@@ -154,6 +156,8 @@
 		47183C5C2929F11F00AB6A38 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
 		47183C5E2929F16600AB6A38 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		47183C60292A009400AB6A38 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
+		47183C62292A939800AB6A38 /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
+		47183C64292A967300AB6A38 /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
 		4726B91829208B4700C43C28 /* MeditationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationView.swift; sourceTree = "<group>"; };
 		4726B91B2920A65D00C43C28 /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 		4726B91D2920A6E300C43C28 /* View+PreviewDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+PreviewDevice.swift"; sourceTree = "<group>"; };
@@ -457,6 +461,8 @@
 				4726B91A2920A65200C43C28 /* Constants */,
 				47AFCE6C2926B1D700E47FCD /* Extensions */,
 				47050738291F460C007996FF /* LaunchScreen.storyboard */,
+				47183C62292A939800AB6A38 /* AppStoreReviewManager.swift */,
+				47183C64292A967300AB6A38 /* RemoteConfig.swift */,
 			);
 			path = AdditionalFiles;
 			sourceTree = "<group>";
@@ -738,6 +744,7 @@
 				47F5563E2929B05000CCB9B4 /* FamilyActivity+String.swift in Sources */,
 				4726B91929208B4700C43C28 /* MeditationView.swift in Sources */,
 				47F556422929B27A00CCB9B4 /* ManagedSettingsStore+isShieldOpen.swift in Sources */,
+				47183C65292A967300AB6A38 /* RemoteConfig.swift in Sources */,
 				47572D672914CE9500793CF4 /* App.swift in Sources */,
 				47183C5F2929F16600AB6A38 /* Constants.swift in Sources */,
 				47C0B8C9291E9D2700F04C7F /* HomeView.swift in Sources */,
@@ -749,6 +756,7 @@
 				47F5563A2929AE3F00CCB9B4 /* DeviceService.swift in Sources */,
 				47AFCE88292867D000E47FCD /* CustomizeView.swift in Sources */,
 				47183C532929BC7A00AB6A38 /* DurationPickerView.swift in Sources */,
+				47183C63292A939800AB6A38 /* AppStoreReviewManager.swift in Sources */,
 				47C0B8CB291E9D4800F04C7F /* MySchedules.swift in Sources */,
 				47AFCE7F2926EF5700E47FCD /* Encodable+Dict.swift in Sources */,
 				47AFCE7D2926EF4100E47FCD /* Session.swift in Sources */,

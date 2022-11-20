@@ -11,6 +11,7 @@ import FamilyControls
 import DeviceActivity
 import ManagedSettings
 import UserNotifications
+import StoreKit
 
 struct HomeView: View {
     @ObservedObject var myManagedSettings: MyManagedSettingsService //ObservedObject is like a StateObject, except instead of being managed by the SwiftUI View, it's a separate entity
@@ -18,6 +19,7 @@ struct HomeView: View {
     @State var notifsEnabled: Bool = DeviceService.shared.getNotificationSetting() ?? false
     @State var showCustomization: Bool = false
     @State var showDemo: Bool = !MyManagedSettingsService.shared.managedSettings.hasBeenActivatedOnce
+    @State var showOptions: Bool = false
     
     var body: some View {
         NavigationView {
@@ -27,22 +29,46 @@ struct HomeView: View {
                     .foregroundColor(.clear)
                 VStack(spacing: 10) {
                     HStack(alignment: .center, spacing: 10) {
-                        Spacer()
-                        Button {} label: {
+                        Button {
+                            
+                        } label: {
                             Image(systemName: "questionmark.circle")
                         }.hidden()
+                        .sheet(isPresented: $showDemo) {
+                            DemoView(showDemo: $showDemo)
+                        }
+                        Spacer()
                         Text("Mindberry")
                             .font(.largeTitle)
                             .foregroundColor(.white)
                             .fontWeight(.heavy)
                             .font(.body)
                         Button {
-                            showDemo = true
+                            showOptions = true
                         } label: {
                             Image(systemName: "questionmark.circle")
                         }
-                        .sheet(isPresented: $showDemo) {
-                            DemoView(showDemo: $showDemo)
+                        .confirmationDialog("More", isPresented: $showOptions, titleVisibility: .hidden) {
+                            Button {
+                                 showDemo = true
+                            } label: {
+                                Text("How Mindberry works")
+                            }
+                            Button {
+                                UIApplication.shared.open(Constants.feedbackLink as URL)
+                            } label: {
+                                Text("Provide us feedback")
+                            }
+//                            Button {
+//                                UIApplication.shared.open(Constants.feedbackLink as URL)
+//                            } label: {
+//                                Text("Leave a review")
+//                            }
+                            Button {
+                                UIApplication.shared.open(Constants.privacyPageLink as URL)
+                            } label: {
+                                Text("Privacy")
+                            }
                         }
                         Spacer()
                     }

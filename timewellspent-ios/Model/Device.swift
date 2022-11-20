@@ -9,18 +9,22 @@ import Foundation
 
 struct Device: Codable {
     var estimatedSessionTime: Int = 20
+    var hasRatedApp: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case estimatedSessionTime
+        case hasRatedApp
     }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         estimatedSessionTime = try values.decodeIfPresent(Int.self, forKey: .estimatedSessionTime) ?? 20
+        hasRatedApp = try values.decodeIfPresent(Bool.self, forKey: .hasRatedApp) ?? false
     }
     
     init() {
         estimatedSessionTime = 20
+        hasRatedApp = false
     }
     
 }

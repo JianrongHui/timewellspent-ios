@@ -39,6 +39,8 @@ class DeviceService: NSObject {
         return device.estimatedSessionTime
     }
     
+    func hasRatedApp() -> Bool { return device.hasRatedApp }
+    
     //MARK: - Setters
     
     func updateNotificationSetting(to newValue: Bool) {
@@ -47,6 +49,11 @@ class DeviceService: NSObject {
     
     func setEstimatedSessionTime(to newTime: Int) {
         device.estimatedSessionTime = newTime
+        Task { await saveToFilesystem() }
+    }
+    
+    func didRateApp() {
+        device.hasRatedApp = true
         Task { await saveToFilesystem() }
     }
     

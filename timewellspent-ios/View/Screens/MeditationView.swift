@@ -96,6 +96,7 @@ struct MeditationView: View {
         SessionService.shared.currentSession.afterRating = index
         SessionService.shared.postToFirebase()
         withAnimation { isMeditating.wrappedValue.toggle() }
+        AppStoreReviewManager.requestReviewIfAppropriate()
     }
     
     func startMeditation() async {
