@@ -32,6 +32,10 @@ class MyManagedSettingsService: NSObject, ObservableObject {
         }
     }
     
+    func refreshMonitoringScreentime() {
+        toggleMonitoringScreentime(to: managedSettings.isActive)
+    }
+    
     //NOTE: The maximum number of activities that can be monitored at one time by an app and its extensions is twenty.
     func toggleMonitoringScreentime(to shouldMonitor: Bool) {
         managedSettings.isActive = shouldMonitor

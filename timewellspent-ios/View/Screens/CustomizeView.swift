@@ -68,7 +68,9 @@ struct CustomizeView: View {
                 .buttonStyle(.borderedProminent)
                 .foregroundColor(.white)
                 .tint(Color(.black.withAlphaComponent(0.6)))
-                .sheet(isPresented: $isDiscouragedPresented, content: {
+                .sheet(isPresented: $isDiscouragedPresented, onDismiss: {
+                    
+                }, content: {
                     AppPickerView(myMSS: myMSS, showDiscouraged: $isDiscouragedPresented)
                 })
             Button {

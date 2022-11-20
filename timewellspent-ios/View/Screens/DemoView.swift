@@ -53,7 +53,7 @@ struct DemoView: View {
                 Text("After an interruption,")
                     .font(.title)
                     .fontWeight(.bold)
-                Text("Open Mindberry for a guided breathing session or put your phone down for a bit.\n\nYou can start using it again after 5 minutes")
+                Text("Open Mindberry for a guided breathing session or put your phone down for a bit.\n\nYou can start using it again after 5 minutes.")
                     .multilineTextAlignment(.center)
                 Spacer()
                 Spacer()

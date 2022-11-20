@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSUserNotificationsUsageDescription</key>
-	<string>Receive notifications to invite you to a mindfulness break while using your phone</string>
+	<string>Receive a banner notification upon your mindfulness reminder to easily open the Mindberry app and begin a mindfulness session.</string>
 </dict>
 </plist>

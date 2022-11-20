@@ -82,10 +82,12 @@ struct HomeView: View {
                     .foregroundColor(.accentColor)
                     .font(.title3)
                     .fontWeight(.heavy)
-                    .sheet(isPresented: $showCustomization) {
+                    .sheet(isPresented: $showCustomization, onDismiss: {
+                        MyManagedSettingsService.shared.refreshMonitoringScreentime() //to save the settings
+                    }, content: {
                         CustomizeView(myMSS: MyManagedSettingsService.shared, showCustomization: $showCustomization)
                             .presentationDetents([.medium])
-                    }
+                    })
             }
             .frame(
                 maxWidth: .infinity,

@@ -12,7 +12,7 @@ struct DurationPickerView: View {
     @Binding var showCustomization: Bool
     
     let columns = [
-        MultiComponentPicker.Column(label: "min", options: Array(15...30).map { MultiComponentPicker.Column.Option(text: "\($0)", tag: $0) })
+        MultiComponentPicker.Column(label: "min", options: Array(15...40).map { MultiComponentPicker.Column.Option(text: "\($0)", tag: $0) })
     ]
     @Binding var selectedMinute: Int
 
