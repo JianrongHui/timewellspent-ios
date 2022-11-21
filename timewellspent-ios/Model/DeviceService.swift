@@ -41,6 +41,10 @@ class DeviceService: NSObject {
     
     func hasRatedApp() -> Bool { return device.hasRatedApp }
     
+    func getMindfulnessDuration() -> Int {
+        return device.mindfulnessDuration
+    }
+    
     //MARK: - Setters
     
     func updateNotificationSetting(to newValue: Bool) {
@@ -49,6 +53,11 @@ class DeviceService: NSObject {
     
     func setEstimatedSessionTime(to newTime: Int) {
         device.estimatedSessionTime = newTime
+        Task { await saveToFilesystem() }
+    }
+    
+    func setMindfulnessDuration(to newTime: Int) {
+        device.mindfulnessDuration = newTime
         Task { await saveToFilesystem() }
     }
     

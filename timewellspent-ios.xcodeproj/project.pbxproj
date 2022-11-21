@@ -31,10 +31,14 @@
 		47183C61292A009400AB6A38 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C60292A009400AB6A38 /* DemoView.swift */; };
 		47183C63292A939800AB6A38 /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C62292A939800AB6A38 /* AppStoreReviewManager.swift */; };
 		47183C65292A967300AB6A38 /* RemoteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C64292A967300AB6A38 /* RemoteConfig.swift */; };
+		47183C67292A9F6F00AB6A38 /* smileberry.png in Resources */ = {isa = PBXBuildFile; fileRef = 47183C66292A9F6F00AB6A38 /* smileberry.png */; };
+		47183C69292ADB0800AB6A38 /* MindfulnessDurationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C68292ADB0800AB6A38 /* MindfulnessDurationPickerView.swift */; };
+		47183C6C292AE02900AB6A38 /* CustomizeNotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47183C6B292AE02900AB6A38 /* CustomizeNotificationsView.swift */; };
+		47183C6E292AF6B800AB6A38 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 47183C6D292AF6B800AB6A38 /* FirebaseRemoteConfig */; };
+		47183C70292AF6B800AB6A38 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 47183C6F292AF6B800AB6A38 /* FirebaseRemoteConfigSwift */; };
 		4726B91929208B4700C43C28 /* MeditationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4726B91829208B4700C43C28 /* MeditationView.swift */; };
 		4726B91C2920A65D00C43C28 /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4726B91B2920A65D00C43C28 /* DeviceConstants.swift */; };
 		4726B91E2920A6E300C43C28 /* View+PreviewDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4726B91D2920A6E300C43C28 /* View+PreviewDevice.swift */; };
-		4733245B291F825100D3E616 /* smileberry.png in Resources */ = {isa = PBXBuildFile; fileRef = 4733245A291F825100D3E616 /* smileberry.png */; };
 		4733245D291F892500D3E616 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4733245C291F892500D3E616 /* GoogleService-Info.plist */; };
 		4733245E291F892500D3E616 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4733245C291F892500D3E616 /* GoogleService-Info.plist */; };
 		4733245F291F892500D3E616 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4733245C291F892500D3E616 /* GoogleService-Info.plist */; };
@@ -158,10 +162,12 @@
 		47183C60292A009400AB6A38 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		47183C62292A939800AB6A38 /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
 		47183C64292A967300AB6A38 /* RemoteConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfig.swift; sourceTree = "<group>"; };
+		47183C66292A9F6F00AB6A38 /* smileberry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smileberry.png; path = "../../../../../Volumes/GoogleDrive/내 드라이브/LeaveyLabs/timewellspent/smileberry.png"; sourceTree = "<group>"; };
+		47183C68292ADB0800AB6A38 /* MindfulnessDurationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindfulnessDurationPickerView.swift; sourceTree = "<group>"; };
+		47183C6B292AE02900AB6A38 /* CustomizeNotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeNotificationsView.swift; sourceTree = "<group>"; };
 		4726B91829208B4700C43C28 /* MeditationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationView.swift; sourceTree = "<group>"; };
 		4726B91B2920A65D00C43C28 /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 		4726B91D2920A6E300C43C28 /* View+PreviewDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+PreviewDevice.swift"; sourceTree = "<group>"; };
-		4733245A291F825100D3E616 /* smileberry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smileberry.png; sourceTree = "<group>"; };
 		4733245C291F892500D3E616 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4750E6C529202A45000A1F62 /* pawpatroldog-nobg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pawpatroldog-nobg.png"; sourceTree = "<group>"; };
 		47572D632914CE9500793CF4 /* timewellspent-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "timewellspent-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +237,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47183C6E292AF6B800AB6A38 /* FirebaseRemoteConfig in Frameworks */,
+				47183C70292AF6B800AB6A38 /* FirebaseRemoteConfigSwift in Frameworks */,
 				47AFCE762926C4CA00E47FCD /* FirebaseFirestore in Frameworks */,
 				47AFCE782926C4CA00E47FCD /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -267,7 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				4750E6C529202A45000A1F62 /* pawpatroldog-nobg.png */,
-				4733245A291F825100D3E616 /* smileberry.png */,
+				47183C66292A9F6F00AB6A38 /* smileberry.png */,
 				47050745291F5ED0007996FF /* ShieldConfigurationExtension.swift */,
 				47050747291F5ED0007996FF /* Info.plist */,
 				47050748291F5ED0007996FF /* shield.entitlements */,
@@ -312,19 +320,28 @@
 			children = (
 				47C0B8C5291E9D2700F04C7F /* HomeView.swift */,
 				4726B91829208B4700C43C28 /* MeditationView.swift */,
+				47183C60292A009400AB6A38 /* DemoView.swift */,
+				47183C6A292ADFEA00AB6A38 /* CustomizeModals */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		47183C6A292ADFEA00AB6A38 /* CustomizeModals */ = {
+			isa = PBXGroup;
+			children = (
 				47AFCE87292867D000E47FCD /* CustomizeView.swift */,
 				47183C522929BC7A00AB6A38 /* DurationPickerView.swift */,
 				47183C5A2929EF2A00AB6A38 /* AppPickerView.swift */,
-				47183C60292A009400AB6A38 /* DemoView.swift */,
+				47183C68292ADB0800AB6A38 /* MindfulnessDurationPickerView.swift */,
+				47183C6B292AE02900AB6A38 /* CustomizeNotificationsView.swift */,
 			);
-			path = Screens;
+			path = CustomizeModals;
 			sourceTree = "<group>";
 		};
 		4726B91A2920A65200C43C28 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				4726B91B2920A65D00C43C28 /* DeviceConstants.swift */,
-				4726B91D2920A6E300C43C28 /* View+PreviewDevice.swift */,
+				47183C64292A967300AB6A38 /* RemoteConfig.swift */,
 				47183C5E2929F16600AB6A38 /* Constants.swift */,
 			);
 			path = Constants;
@@ -377,6 +394,8 @@
 		47572D722914CE9600793CF4 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				4726B91B2920A65D00C43C28 /* DeviceConstants.swift */,
+				4726B91D2920A6E300C43C28 /* View+PreviewDevice.swift */,
 				47572D732914CE9600793CF4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -450,6 +469,7 @@
 				47183C592929EDC800AB6A38 /* Screens */,
 				47183C582929EDB000AB6A38 /* ComponentViews */,
 				47AFCE6F2926B82E00E47FCD /* Environments.swift */,
+				47050738291F460C007996FF /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -457,12 +477,10 @@
 		47C0B8CF291E9F0800F04C7F /* AdditionalFiles */ = {
 			isa = PBXGroup;
 			children = (
+				47183C62292A939800AB6A38 /* AppStoreReviewManager.swift */,
 				47C0B8BF291E9CC100F04C7F /* AppDelegate.swift */,
 				4726B91A2920A65200C43C28 /* Constants */,
 				47AFCE6C2926B1D700E47FCD /* Extensions */,
-				47050738291F460C007996FF /* LaunchScreen.storyboard */,
-				47183C62292A939800AB6A38 /* AppStoreReviewManager.swift */,
-				47183C64292A967300AB6A38 /* RemoteConfig.swift */,
 			);
 			path = AdditionalFiles;
 			sourceTree = "<group>";
@@ -546,6 +564,8 @@
 			packageProductDependencies = (
 				47AFCE752926C4CA00E47FCD /* FirebaseFirestore */,
 				47AFCE772926C4CA00E47FCD /* FirebaseFirestoreSwift */,
+				47183C6D292AF6B800AB6A38 /* FirebaseRemoteConfig */,
+				47183C6F292AF6B800AB6A38 /* FirebaseRemoteConfigSwift */,
 			);
 			productName = "timewellspent-ios";
 			productReference = 47572D632914CE9500793CF4 /* timewellspent-ios.app */;
@@ -651,8 +671,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4750E6C629202A45000A1F62 /* pawpatroldog-nobg.png in Resources */,
-				4733245B291F825100D3E616 /* smileberry.png in Resources */,
 				47332460291F892500D3E616 /* GoogleService-Info.plist in Resources */,
+				47183C67292A9F6F00AB6A38 /* smileberry.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,10 +775,12 @@
 				47183C5B2929EF2A00AB6A38 /* AppPickerView.swift in Sources */,
 				47F5563A2929AE3F00CCB9B4 /* DeviceService.swift in Sources */,
 				47AFCE88292867D000E47FCD /* CustomizeView.swift in Sources */,
+				47183C69292ADB0800AB6A38 /* MindfulnessDurationPickerView.swift in Sources */,
 				47183C532929BC7A00AB6A38 /* DurationPickerView.swift in Sources */,
 				47183C63292A939800AB6A38 /* AppStoreReviewManager.swift in Sources */,
 				47C0B8CB291E9D4800F04C7F /* MySchedules.swift in Sources */,
 				47AFCE7F2926EF5700E47FCD /* Encodable+Dict.swift in Sources */,
+				47183C6C292AE02900AB6A38 /* CustomizeNotificationsView.swift in Sources */,
 				47AFCE7D2926EF4100E47FCD /* Session.swift in Sources */,
 				47F5563C2929AEC000CCB9B4 /* Device.swift in Sources */,
 				47183C552929E3F700AB6A38 /* MultiComponentPicker.swift in Sources */,
@@ -1368,6 +1390,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		47183C6D292AF6B800AB6A38 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47AFCE742926C4CA00E47FCD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		47183C6F292AF6B800AB6A38 /* FirebaseRemoteConfigSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47AFCE742926C4CA00E47FCD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfigSwift;
+		};
 		47AFCE752926C4CA00E47FCD /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 47AFCE742926C4CA00E47FCD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

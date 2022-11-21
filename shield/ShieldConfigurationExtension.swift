@@ -16,7 +16,7 @@ class ShieldConfigurationExtension: ShieldConfigurationDataSource {
     
     let bgColor = UIColor(hex: "#8C567A")
     let title = "Have a mindberry"
-    let body = "Open Mindberry for a short mindfulness break."
+    let body = "You've been using your phone for a while.\n\nOpen Mindberry for a short mindfulness break."
     
     override func configuration(shielding application: Application) -> ShieldConfiguration {
 //        let appName = "your name" //application.localizedDisplayName ?? "your phone"

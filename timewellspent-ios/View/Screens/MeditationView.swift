@@ -94,7 +94,7 @@ struct MeditationView: View {
     
     func handleAfterButtonPress(_ index: Int) {
         SessionService.shared.currentSession.afterRating = index
-        SessionService.shared.postToFirebase()
+        SessionService.shared.postToFirebase(beforeRating: previousRating, afterRating: index)
         withAnimation { isMeditating.wrappedValue.toggle() }
         AppStoreReviewManager.requestReviewIfAppropriate()
     }
@@ -106,7 +106,7 @@ struct MeditationView: View {
                 breatheIn = true
             }
             hasAnswered = true //should come after the 3 second wait, so that the proper instructions are shown
-            for _ in 0..<11 {
+            for _ in 0..<(12*DeviceService.shared.getMindfulnessDuration() + 1) {
                 withAnimation { breatheIn.toggle() }
                 try await Task.sleep(nanoseconds: breatheTimeInSeconds * NSEC_PER_SEC)
             }
@@ -114,7 +114,7 @@ struct MeditationView: View {
                 isShowingDirections = true
                 isBreathing = false
             }
-            try await Task.sleep(nanoseconds: 3 * NSEC_PER_SEC)
+            try await Task.sleep(nanoseconds: 2 * NSEC_PER_SEC)
             withAnimation { isShowingDirections = false }
             await MyManagedSettingsService.shared.pauseUntilNextHour()
         } catch {

@@ -11,15 +11,19 @@ struct CustomizeView: View {
     @ObservedObject var myMSS: MyManagedSettingsService
     @State var isDiscouragedPresented = false
     @State private var isGoToSettingsAlertPresented = false
-    @State var estimatedSessionTime = DeviceService.shared.getEstimatedSessionTime()
     
+    @State var estimatedSessionTime = DeviceService.shared.getEstimatedSessionTime()
+    @State var mindfulnessDuration = DeviceService.shared.getMindfulnessDuration()
+    
+    @State var showNotificationsSheet: Bool = false
     @State var showDurationPickerSheet: Bool = false
+    @State var showMindfulnessPickerSheet: Bool = false
     @State var notificationStatus: Bool = (DeviceService.shared.getNotificationSetting() ?? false)
     
     @Binding var showCustomization: Bool
 
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .center, spacing: 12) {
             Rectangle()
                 .frame(width: 30, height: 3, alignment: .center)
                 .cornerRadius(5)
@@ -32,27 +36,6 @@ struct CustomizeView: View {
                 .font(.body)
             Spacer()
             Button {
-                showDurationPickerSheet = true
-            } label: {
-                HStack(alignment: .center, spacing: 10) {
-                    Image(systemName: "stopwatch")
-                    Text("Approximate Duration")
-                    Spacer()
-                    Text(String(estimatedSessionTime) + "m")
-                    Image(systemName: "chevron.right")
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 40)
-            }
-                .buttonStyle(.borderedProminent)
-                .foregroundColor(.white)
-                .tint(Color(.black.withAlphaComponent(0.6)))
-                .sheet(isPresented: $showDurationPickerSheet) {
-                    DurationPickerView(myMSS: MyManagedSettingsService.shared, showCustomization: $showDurationPickerSheet, selectedMinute: $estimatedSessionTime)
-                        .presentationDetents([.medium])
-                }
-            
-            Button {
                 isDiscouragedPresented = true
             } label: {
                 HStack(alignment: .center, spacing: 10) {
@@ -63,7 +46,7 @@ struct CustomizeView: View {
                     Image(systemName: "chevron.right")
                 }
                 .frame(maxWidth: .infinity)
-                .frame(height: 40)
+                .frame(height: 35)
             }
                 .buttonStyle(.borderedProminent)
                 .foregroundColor(.white)
@@ -73,28 +56,68 @@ struct CustomizeView: View {
                 }, content: {
                     AppPickerView(myMSS: myMSS, showDiscouraged: $isDiscouragedPresented)
                 })
+            
             Button {
-                notificationsSetTo(!notificationStatus)
+                showDurationPickerSheet = true
+            } label: {
+                HStack(alignment: .center, spacing: 10) {
+                    Image(systemName: "clock.badge.exclamationmark")
+                    Text("Continuous Screen Time")
+                    Spacer()
+                    Text(String(estimatedSessionTime) + "min")
+                    Image(systemName: "chevron.right")
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 35)
+            }
+                .buttonStyle(.borderedProminent)
+                .foregroundColor(.white)
+                .tint(Color(.black.withAlphaComponent(0.6)))
+                .sheet(isPresented: $showDurationPickerSheet) {
+                    DurationPickerView(myMSS: myMSS, showCustomization: $showDurationPickerSheet, selectedMinute: $estimatedSessionTime)
+                        .presentationDetents([.medium])
+                }
+            Button {
+                showNotificationsSheet = true
             } label: {
                 HStack(alignment: .center, spacing: 10) {
                     Image(systemName: "bell")
                     Text("Notification Assist")
                     Spacer()
-//                    Text(notificationStatus ? "On" : "Off")
-//                    Image(systemName: "chevron.right")
-                    Toggle("", isOn: $notificationStatus)
-                        .tint(.green)
-                        .onChange(of: notificationStatus) { newValue in
-                            notificationsSetTo(notificationStatus)
-                        }
+                    Text(notificationStatus ? "On" : "Off")
+                    Image(systemName: "chevron.right")
                 }
                 .frame(maxWidth: .infinity)
-                .frame(height: 40)
+                .frame(height: 35)
             }
                 .buttonStyle(.borderedProminent)
                 .foregroundColor(.white)
                 .tint(Color(.black.withAlphaComponent(0.6)))
-            Spacer()
+                .sheet(isPresented: $showNotificationsSheet) {
+                    CustomizeNotificationsView(myMSS: myMSS, showSheet: $showNotificationsSheet, notificationStatus: $notificationStatus, isGoToSettingsAlertPresented: $isGoToSettingsAlertPresented)
+//                        .presentationDetents([.medium])
+                }
+            
+            Button {
+                showMindfulnessPickerSheet = true
+            } label: {
+                HStack(alignment: .center, spacing: 10) {
+                    Image(systemName: "stopwatch")
+                    Text("Mindfulness Duration")
+                    Spacer()
+                    Text(String(mindfulnessDuration) + "min")
+                    Image(systemName: "chevron.right")
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 35)
+            }
+                .buttonStyle(.borderedProminent)
+                .foregroundColor(.white)
+                .tint(Color(.black.withAlphaComponent(0.6)))
+                .sheet(isPresented: $showMindfulnessPickerSheet) {
+                    MindfulnessDurationPickerView(myMSS: myMSS, showCustomization: $showMindfulnessPickerSheet, selectedMinute: $mindfulnessDuration)
+                        .presentationDetents([.medium])
+                }
             Button {
                 showCustomization = false
             } label: {
@@ -107,6 +130,7 @@ struct CustomizeView: View {
                 .foregroundColor(.accentColor)
                 .tint(.white)
                 .cornerRadius(40)
+                    
         }
         .fontWeight(.light)
         .font(.body)
@@ -122,34 +146,6 @@ struct CustomizeView: View {
         .padding(EdgeInsets(top: 8, leading: 15, bottom: 20, trailing: 15))
         .foregroundColor(.white)
         .background(.tint)
-    }
-    
-    func notificationsSetTo(_ shouldNotify: Bool) {
-        if shouldNotify {
-            UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { settings in
-                switch settings.authorizationStatus {
-                case .authorized:
-                    DeviceService.shared.updateNotificationSetting(to: true)
-                    notificationStatus = true
-                case .notDetermined:
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                        if success {
-                            DeviceService.shared.updateNotificationSetting(to: true)
-                            notificationStatus = true
-                        } else if let error = error {
-                            print(error.localizedDescription)
-                        }
-                    }
-                default:
-                    isGoToSettingsAlertPresented = true
-                    notificationStatus = false
-                }
-            })
-        } else {
-            DeviceService.shared.updateNotificationSetting(to: false)
-            notificationStatus = false
-        }
-        
     }
 }
 

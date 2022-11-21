@@ -18,33 +18,59 @@ import UserNotifications
 
 class DeviceActivityMonitorExtension: DeviceActivityMonitor {
     
+    //PROPERTIES
     let store = ManagedSettingsStore(named: ManagedSettingsStore.Name(rawValue: "discouraged"))
-        
+    let userDefaults = UserDefaults(suiteName: AppGroupData.appGroupName)!
+
     override func eventDidReachThreshold(_ event: DeviceActivityEvent.Name, activity: DeviceActivityName) {
         super.eventDidReachThreshold(event, activity: activity)
         
-        
-        //we need to make sure the hour is this hour
-        //the event might be auto called if it was the previous hour?
-        print("Starting monitoring. Hour is: ", Calendar.current.dateComponents([.hour, .minute], from: Date()).hour!)
-        
+        //FLAGS
+        let shouldResetDailyDefaults: Bool
 
+        //PERFORM CHECKS
+        let thisHour = (Calendar.current.dateComponents([.hour], from: Date()).hour)!
+        let activityHour = activity.rawValue
+        
+        //Check: in case a schedule is auto called for a previous hour
+        guard String(thisHour) == activityHour else { return }
+        
+        //Check: if today is a new day, reset all userDefaults
+        if let userDefaultsDate = userDefaults.object(forKey: AppGroupData.savedDataDateKey) as? Date {
+            let diff = Calendar.current.dateComponents([.day], from: Date(), to: userDefaultsDate)
+            shouldResetDailyDefaults = diff.day != 0
+        } else {
+            shouldResetDailyDefaults = false
+        }
+
+        //Check: we haven't already displayed a shield for this hour today
+        if !shouldResetDailyDefaults { //if we should reset daily defaults, then we don't need to worry abt it being the same day
+            let didAlreadyRunToday = userDefaults.object(forKey: activityHour) as? Bool
+            if let didAlreadyRunToday, didAlreadyRunToday == true { return }
+        }
+        
+        
+        //BLOCK ALL APPS
         //NOTE: this cannot go in its own function. My own custom functions can't be called in this extension... but somehow, Firebase's "FirebaseApp.configure() does work?
         ManagedSettingsStore().shield.webDomainCategories = .all()
         ManagedSettingsStore().shield.applicationCategories = .all()
 
-        let userDefaults = UserDefaults(suiteName: AppGroupData.appGroupName)
-        let notifsOn = userDefaults?.object(forKey: AppGroupData.notificationSettingKey) as! Bool
-        guard notifsOn else { return }
         
-        let content = UNMutableNotificationContent()
-        content.title = "Have a mindberry"
-        content.subtitle = "Tap to start a mindfulness break"
-        content.sound = nil
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false) //show this 0.6 seconds from now
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request)
+        //PREPARE NOTIFICATION
+        if
+            let notifsOn = userDefaults.object(forKey: AppGroupData.notificationSettingKey) as? Bool,
+            notifsOn == true {
+            let content = UNMutableNotificationContent()
+            content.title = "Have a mindberry"
+            content.subtitle = "Tap to start a mindfulness break"
+            content.sound = nil
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false) //show this 0.6 seconds from now
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request)
+        }
+
         
+        //PREPARE MINDFUL BREAK
         let rightNow = Calendar.current.dateComponents([.hour, .minute, .second], from: .now)
         var fifteenMinutesFromNow = rightNow
         fifteenMinutesFromNow.minute! += 40 //must be at least 15 min interval. both must be in the future
@@ -59,11 +85,21 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         } catch {
             
         }
+    
+        //PERSIST CHANGES TO USER DEFAULTS
+        Task {
+            if shouldResetDailyDefaults {
+                for x in 0..<24 {
+                    userDefaults.set(false, forKey: String(x)) // erase all the previous day's data
+                }
+            }
+            userDefaults.set(Date(), forKey: AppGroupData.savedDataDateKey)
+            userDefaults.set(true, forKey: activityHour)
+        }
         
-        let thisHour = (Calendar.current.dateComponents([.hour], from: Date()).hour)!
-        DeviceActivityCenter().stopMonitoring([DeviceActivityName(String(thisHour))])
         
-        //ALTERNATE APPROACH
+        
+        //ALTERNATE APPROACH, CREATING EVENTS TO DETECT CUMULATION AS IT BUILDS UP
         
         //we either need:
         //20 different intervals throughout the day, each for each hour
@@ -128,6 +164,9 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
 //        } catch {
 //
 //        }
+        //old code from above
+        //        DeviceActivityCenter().stopMonitoring([DeviceActivityName(String(thisHour))])
+
     }
     
 }

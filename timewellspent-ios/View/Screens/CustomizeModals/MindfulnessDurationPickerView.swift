@@ -1,18 +1,19 @@
 //
-//  DurationPickerView.swift
+//  MindfulnessDurationPickerView.swift
 //  timewellspent-ios
 //
-//  Created by Adam Novak on 2022/11/19.
+//  Created by Adam Novak on 2022/11/20.
 //
 
+import Foundation
 import SwiftUI
 
-struct DurationPickerView: View {
+struct MindfulnessDurationPickerView: View {
     @ObservedObject var myMSS: MyManagedSettingsService
     @Binding var showCustomization: Bool
     
     let columns = [
-        MultiComponentPicker.Column(label: "min", options: Array(15...40).map { MultiComponentPicker.Column.Option(text: "\($0)", tag: $0) })
+        MultiComponentPicker.Column(label: "min", options: Array(1...5).map { MultiComponentPicker.Column.Option(text: "\($0)", tag: $0) })
     ]
     @Binding var selectedMinute: Int
 
@@ -24,19 +25,21 @@ struct DurationPickerView: View {
                 .cornerRadius(5)
                 .foregroundColor(.black.opacity(0.5))
             Spacer()
-            Text("Approximate Duration")
+            Text("Mindfulness Session")
                 .font(.title)
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .font(.body)
             Spacer()
-            Text("After roughly this much continuous screen time, Mindberry will remind you to take a break.")
+            Text("After an interruption, open Mindberry for a guided breathing session of this length.\n\nRegardless of this length, your phone will be locked for 5 minutes after an interruption.")
+                    .lineLimit(5)
+                    .minimumScaleFactor(0.8)
                 .multilineTextAlignment(.center)
             Spacer()
             MultiComponentPicker(columns: columns, selections: [$selectedMinute])
             Spacer()
             Button {
-                DeviceService.shared.setEstimatedSessionTime(to: selectedMinute)
+                DeviceService.shared.setMindfulnessDuration(to: selectedMinute)
                 showCustomization = false
             } label: {
                 Text("Save")
@@ -58,8 +61,8 @@ struct DurationPickerView: View {
     }
 }
 
-struct DurationPickerView_Previews: PreviewProvider {
+struct MindfulnessDurationPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        DurationPickerView(myMSS: MyManagedSettingsService.shared, showCustomization: .constant(true), selectedMinute: .constant(20))
+        MindfulnessDurationPickerView(myMSS: MyManagedSettingsService.shared, showCustomization: .constant(true), selectedMinute: .constant(20))
     }
 }

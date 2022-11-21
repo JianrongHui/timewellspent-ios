@@ -13,11 +13,12 @@ import UIKit
 public struct Session: Codable {
     var beforeRating: Int
     var afterRating: Int
-    var timestamp: Double
-    var duration: Int
+    var timestamp: Date
+    var screenTime: Int
+    var mindfulnessDuration: Int
     var deviceId: String = UIDevice.current.identifierForVendor!.uuidString
     
-    static let Placeholder: Session = .init(beforeRating: 0, afterRating: 0, timestamp: Date.distantPast.timeIntervalSince1970, duration: 0, deviceId: "")
+    static let Placeholder: Session = .init(beforeRating: 0, afterRating: 0, timestamp: Date.distantPast, screenTime: 0, mindfulnessDuration: 0, deviceId: "")
 }
 
 class SessionService {
@@ -25,9 +26,9 @@ class SessionService {
     
     static let shared = SessionService()
     
-    func postToFirebase() {
+    func postToFirebase(beforeRating: Int, afterRating: Int) {
         let db = Firestore.firestore()
-        currentSession = Session(beforeRating: 1, afterRating: 4, timestamp: Date().timeIntervalSince1970, duration: DeviceService.shared.getEstimatedSessionTime())
+        currentSession = Session(beforeRating: beforeRating, afterRating: afterRating, timestamp: Date(), screenTime: DeviceService.shared.getEstimatedSessionTime(), mindfulnessDuration: DeviceService.shared.getMindfulnessDuration())
         db.collection("session").document(UUID().uuidString).setData(currentSession.dictionary)
         currentSession = .Placeholder
     }

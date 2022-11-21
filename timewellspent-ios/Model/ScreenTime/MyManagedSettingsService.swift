@@ -44,7 +44,7 @@ class MyManagedSettingsService: NSObject, ObservableObject {
         let deviceActivityCenter = DeviceActivityCenter()
         deviceActivityCenter.stopMonitoring()
 
-        //this takes a second to start 20 schedules
+        //this takes a second to start 20 schedules, so throw it in a task
         Task {
             if shouldMonitor {
                 for i in 5..<23 {

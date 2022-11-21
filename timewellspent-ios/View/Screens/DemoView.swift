@@ -23,7 +23,7 @@ struct DemoView: View {
                 Text("Welcome to Mindberry.")
                     .font(.title)
                     .fontWeight(.bold)
-                Text("Get reminders to put your phone down after using it for an extended period of time.")
+                Text("Mindberry helps you put your phone down after using it for an extended period of time.")
                     .multilineTextAlignment(.center)
                 Spacer()
                 Button {
@@ -53,7 +53,7 @@ struct DemoView: View {
                 Text("After an interruption,")
                     .font(.title)
                     .fontWeight(.bold)
-                Text("Open Mindberry for a guided breathing session or put your phone down for a bit.\n\nYou can start using it again after 5 minutes.")
+                Text("Open Mindberry for a guided breathing session or put your phone down for a bit.\n\nApps on your phone will be locked for 5 minutes. During this time, you can only use essential apps like iMessage or Settings.")
                     .multilineTextAlignment(.center)
                 Spacer()
                 Spacer()

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
-        
+        Constants.fetchRemoteConfig()
         
         _ = try? isUpdateAvailable { (isUpdateAvailable, error) in
             if let error = error {
