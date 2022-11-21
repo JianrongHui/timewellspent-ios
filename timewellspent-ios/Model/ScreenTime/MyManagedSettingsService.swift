@@ -47,9 +47,10 @@ class MyManagedSettingsService: NSObject, ObservableObject {
         //this takes a second to start 20 schedules, so throw it in a task
         Task {
             if shouldMonitor {
-                for i in 5..<23 {
+                for i in 4..<22 {
+                    guard i % 2 == 0 else { continue }
                     let hourSchedule = DeviceActivitySchedule(intervalStart: DateComponents(hour: i, minute: 0),
-                                                              intervalEnd: DateComponents(hour: i, minute: 59),
+                                                              intervalEnd: DateComponents(hour: i+1, minute: 59),
                                                               repeats: true)
                     do {
                         try deviceActivityCenter.startMonitoring(DeviceActivityName(String(i)),
@@ -61,6 +62,7 @@ class MyManagedSettingsService: NSObject, ObservableObject {
                 }
             }
         }
+        print("EVENT", managedSettings.mindfulnessInterruptionEvent)
         Task { await saveToFilesystem() }
     }
     

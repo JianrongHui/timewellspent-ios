@@ -31,10 +31,10 @@ class DeviceActivityMonitorExtension: DeviceActivityMonitor {
         //PERFORM CHECKS
         let thisHour = (Calendar.current.dateComponents([.hour], from: Date()).hour)!
         let activityHour = activity.rawValue
-        
+
         //Check: in case a schedule is auto called for a previous hour
-        guard String(thisHour) == activityHour else { return }
-        
+        guard String(thisHour) == activityHour || String(thisHour-1) == activityHour else { return } //activityHour 22 covers both 22 and 23 o'clock
+
         //Check: if today is a new day, reset all userDefaults
         if let userDefaultsDate = userDefaults.object(forKey: AppGroupData.savedDataDateKey) as? Date {
             let diff = Calendar.current.dateComponents([.day], from: Date(), to: userDefaultsDate)

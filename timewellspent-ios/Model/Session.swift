@@ -26,9 +26,12 @@ class SessionService {
     
     static let shared = SessionService()
     
-    func postToFirebase(beforeRating: Int, afterRating: Int) {
+    func postToFirebase() {
         let db = Firestore.firestore()
-        currentSession = Session(beforeRating: beforeRating, afterRating: afterRating, timestamp: Date(), screenTime: DeviceService.shared.getEstimatedSessionTime(), mindfulnessDuration: DeviceService.shared.getMindfulnessDuration())
+        currentSession.timestamp = Date()
+        currentSession.screenTime = DeviceService.shared.getUserSelectedSessionTime()
+        currentSession.mindfulnessDuration = DeviceService.shared.getMindfulnessDuration()
+        currentSession.deviceId = UIDevice.current.identifierForVendor!.uuidString
         db.collection("session").document(UUID().uuidString).setData(currentSession.dictionary)
         currentSession = .Placeholder
     }

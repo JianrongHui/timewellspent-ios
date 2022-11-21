@@ -52,7 +52,6 @@ struct AppPickerView: View {
                 .tint(.white)
                 .cornerRadius(40)
         }
-        .fontWeight(.light)
         .font(.body)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding(EdgeInsets(top: 8, leading: 15, bottom: 20, trailing: 15))

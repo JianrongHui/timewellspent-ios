@@ -14,32 +14,49 @@ extension Color {
     static let AppPickerBg = Color.init(hex: "1C1C1E")
 }
 
-enum Constants: String, CaseIterable {
+enum RemoteConfigKeys: String, CaseIterable {
     
-    static let remoteConfig = RemoteConfig.remoteConfig()
-
     case minContinuousScreenTime, maxContinuousScreenTime
+    case updateAvailableVersion, updateAvailableFeatures
+    case appStoreLink, landingPageLink, privacyPageLink, feedbackLink
+}
+
+enum Constants {
     
-    static var remoteConfigDefaults: [String: NSObject] = [
-        minContinuousScreenTime.rawValue: 15 as NSObject,
-        maxContinuousScreenTime.rawValue: 40 as NSObject,
-    ]
+    static var remoteConfig: RemoteConfig {
+        RemoteConfig.remoteConfig()
+    }
     
-    static let minDuration = Constants.remoteConfig.configValue(forKey: Constants.minContinuousScreenTime.rawValue).numberValue as? Int ?? 15
-    static let maxDuration = Constants.remoteConfig.configValue(forKey: Constants.maxContinuousScreenTime.rawValue).numberValue as? Int ?? 40
+    static let minContinuousScreenTime = remoteConfig.configValue(forKey: RemoteConfigKeys.minContinuousScreenTime.rawValue).numberValue as? Int ?? 15
+    static let maxContinuousScreenTime = remoteConfig.configValue(forKey: RemoteConfigKeys.maxContinuousScreenTime.rawValue).numberValue as? Int ?? 40
     
-    static let downloadLink = NSURL(string: "https://apps.apple.com/app/mist/id1631426995")!
-    static let landingPageLink = NSURL(string: "https://mindberry.xyz")!
-    static let privacyPageLink = NSURL(string: "https://mindberry.xyz/privacy")!
-    static let feedbackLink = NSURL(string: "https://forms.gle/G4pN8MyiXrk9doREA")!
+    static let updateAvailableVersion = remoteConfig.configValue(forKey: RemoteConfigKeys.updateAvailableVersion.rawValue).stringValue ?? "0.0.0"
+    static let updateAvailableFeatures: Features = Features(json: remoteConfig.configValue(forKey: RemoteConfigKeys.updateAvailableFeatures.rawValue).jsonValue as? [String:Any] ?? [:]) ?? Features()
+    static let appStoreLink = NSURL(string: remoteConfig.configValue(forKey: RemoteConfigKeys.appStoreLink.rawValue).stringValue ?? "https://apple.com")!
+    static let landingPageLink = NSURL(string: remoteConfig.configValue(forKey: RemoteConfigKeys.appStoreLink.rawValue).stringValue ?? "https://mindberry.xyz")!
+    static let privacyPageLink = NSURL(string: remoteConfig.configValue(forKey: RemoteConfigKeys.appStoreLink.rawValue).stringValue ?? "https://mindberry.xyz/privacy")!
+    static let feedbackLink = NSURL(string: remoteConfig.configValue(forKey: RemoteConfigKeys.appStoreLink.rawValue).stringValue ?? "https://forms.gle/G4pN8MyiXrk9doREA")!
+
+    static let currentVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
     
     static func fetchRemoteConfig() {
-        setupRemoteConfigDefaults()
-        
+//        setupRemoteConfigDefaults()
+        remoteConfig.fetchAndActivate { fetchStatus, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            //do something with values if you want
+            //            print(updateAvailableFeatures.jsonValue as? Features)
+            print("Retrieved remote config")
+        }
+    }
+    
+    static func fetchRemoteConfigDebug() {
         let debugSettings = RemoteConfigSettings()
         debugSettings.minimumFetchInterval = 0
         remoteConfig.configSettings = debugSettings
-                
+        
         remoteConfig.fetch(withExpirationDuration: 0) { fetchStatus, error in
             guard error == nil else {
                 print(error!)
@@ -47,13 +64,18 @@ enum Constants: String, CaseIterable {
             }
             remoteConfig.activate()
             print("Retrieved remote config")
-            
-            //then, we should update data in our app with new values
         }
     }
     
-    private static func setupRemoteConfigDefaults() {
-        remoteConfig.setDefaults(remoteConfigDefaults)
-    }
+    
+    //This isn't really needed, since we can just do ?? 15 below
+//    static var remoteConfigDefaults: [String: NSObject] = [
+//        RemoteConfigKeys.minContinuousScreenTime.rawValue: 15 as NSObject,
+//        RemoteConfigKeys.maxContinuousScreenTime.rawValue: 40 as NSObject,
+//    ]
+    
+//    private static func setupRemoteConfigDefaults() {
+//        remoteConfig.setDefaults(remoteConfigDefaults)
+//    }
     
 }

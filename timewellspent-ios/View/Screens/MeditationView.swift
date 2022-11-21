@@ -25,7 +25,7 @@ struct MeditationView: View {
         isBreathing ?
         (breatheIn ? "Breathe in" : "Breathe out") :
         (isShowingDirections ?
-         (hasAnswered ? "We hope you enjoyed your mindberry." : "Let's start a brief mindfulness session.") :
+         (hasAnswered ? "We hope you enjoyed your mindberry." : "Let's begin a short mindfulness break.") :
             (hasAnswered ? "Now I'm feeling..." : "Right now I'm feeling..."))
     }
     
@@ -94,7 +94,7 @@ struct MeditationView: View {
     
     func handleAfterButtonPress(_ index: Int) {
         SessionService.shared.currentSession.afterRating = index
-        SessionService.shared.postToFirebase(beforeRating: previousRating, afterRating: index)
+        SessionService.shared.postToFirebase()
         withAnimation { isMeditating.wrappedValue.toggle() }
         AppStoreReviewManager.requestReviewIfAppropriate()
     }

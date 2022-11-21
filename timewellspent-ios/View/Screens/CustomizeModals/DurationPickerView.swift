@@ -12,7 +12,7 @@ struct DurationPickerView: View {
     @Binding var showCustomization: Bool
     
     let columns = [
-        MultiComponentPicker.Column(label: "min", options: Array(Constants.minDuration...Constants.maxDuration).map { MultiComponentPicker.Column.Option(text: "\($0)", tag: $0) })
+        MultiComponentPicker.Column(label: "min", options: Array(Constants.minContinuousScreenTime...Constants.maxContinuousScreenTime).map { MultiComponentPicker.Column.Option(text: "\($0)", tag: $0) })
     ]
     @Binding var selectedMinute: Int
 
@@ -49,7 +49,6 @@ struct DurationPickerView: View {
                 .tint(.white)
                 .cornerRadius(40)
         }
-        .fontWeight(.light)
         .font(.body)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding(EdgeInsets(top: 8, leading: 15, bottom: 20, trailing: 15))

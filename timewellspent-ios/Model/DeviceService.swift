@@ -35,14 +35,23 @@ class DeviceService: NSObject {
         return AppGroupData.userDefaults?.value(forKey: AppGroupData.notificationSettingKey) as? Bool
     }
     
-    func getEstimatedSessionTime() -> Int {
+    func getUserSelectedSessionTime() -> Int {
         return device.estimatedSessionTime
+    }
+    
+    func getVariedSessiontime() -> Int {
+        let variance = device.estimatedSessionTime / 10
+        return device.estimatedSessionTime + Int.random(in: -variance...variance)
     }
     
     func hasRatedApp() -> Bool { return device.hasRatedApp }
     
     func getMindfulnessDuration() -> Int {
         return device.mindfulnessDuration
+    }
+    
+    func getLastReceivedNewUpdateAlertVersion() -> String {
+        return device.lastReceivedNewUpdateAlertVersion
     }
     
     //MARK: - Setters
@@ -63,6 +72,11 @@ class DeviceService: NSObject {
     
     func didRateApp() {
         device.hasRatedApp = true
+        Task { await saveToFilesystem() }
+    }
+    
+    func didReceiveNewUpdateAlert(forVersion version: String) {
+        device.lastReceivedNewUpdateAlertVersion = version
         Task { await saveToFilesystem() }
     }
     

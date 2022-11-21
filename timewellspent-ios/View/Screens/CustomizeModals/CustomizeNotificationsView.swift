@@ -16,7 +16,6 @@ struct CustomizeNotificationsView: View {
     @Binding var isGoToSettingsAlertPresented: Bool
     
     var body: some View {
-        
         VStack(alignment: .center, spacing: 20) {
             Spacer()
             Text("Notification Assist")
@@ -55,7 +54,6 @@ struct CustomizeNotificationsView: View {
                 .tint(.white)
                 .cornerRadius(40)
         }
-        .fontWeight(.light)
         .font(.body)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding(EdgeInsets(top: 8, leading: 15, bottom: 20, trailing: 15))

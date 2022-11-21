@@ -81,6 +81,8 @@
 		47F5563E2929B05000CCB9B4 /* FamilyActivity+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5563D2929B05000CCB9B4 /* FamilyActivity+String.swift */; };
 		47F556402929B17500CCB9B4 /* MyManagedSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F5563F2929B17500CCB9B4 /* MyManagedSettings.swift */; };
 		47F556422929B27A00CCB9B4 /* ManagedSettingsStore+isShieldOpen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F556412929B27A00CCB9B4 /* ManagedSettingsStore+isShieldOpen.swift */; };
+		47FE9F83292B01B00062B1A6 /* UpdateAvailableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FE9F82292B01B00062B1A6 /* UpdateAvailableView.swift */; };
+		47FE9F85292B4C870062B1A6 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FE9F84292B4C870062B1A6 /* Feature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,6 +206,8 @@
 		47F5563D2929B05000CCB9B4 /* FamilyActivity+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FamilyActivity+String.swift"; sourceTree = "<group>"; };
 		47F5563F2929B17500CCB9B4 /* MyManagedSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyManagedSettings.swift; sourceTree = "<group>"; };
 		47F556412929B27A00CCB9B4 /* ManagedSettingsStore+isShieldOpen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedSettingsStore+isShieldOpen.swift"; sourceTree = "<group>"; };
+		47FE9F82292B01B00062B1A6 /* UpdateAvailableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAvailableView.swift; sourceTree = "<group>"; };
+		47FE9F84292B4C870062B1A6 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +442,7 @@
 				47F556392929AE3F00CCB9B4 /* DeviceService.swift */,
 				47AFCE822926F0CE00E47FCD /* AppGroupData.swift */,
 				47AFCE7C2926EF4100E47FCD /* Session.swift */,
+				47FE9F84292B4C870062B1A6 /* Feature.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 			children = (
 				47572D662914CE9500793CF4 /* App.swift */,
 				477740F929208A3200B0F795 /* ContentView.swift */,
+				47FE9F82292B01B00062B1A6 /* UpdateAvailableView.swift */,
 				47183C592929EDC800AB6A38 /* Screens */,
 				47183C582929EDB000AB6A38 /* ComponentViews */,
 				47AFCE6F2926B82E00E47FCD /* Environments.swift */,
@@ -773,6 +779,7 @@
 				47C0B8D3291ECDEA00F04C7F /* FavoriteButton.swift in Sources */,
 				47C0B8C0291E9CC100F04C7F /* AppDelegate.swift in Sources */,
 				47183C5B2929EF2A00AB6A38 /* AppPickerView.swift in Sources */,
+				47FE9F83292B01B00062B1A6 /* UpdateAvailableView.swift in Sources */,
 				47F5563A2929AE3F00CCB9B4 /* DeviceService.swift in Sources */,
 				47AFCE88292867D000E47FCD /* CustomizeView.swift in Sources */,
 				47183C69292ADB0800AB6A38 /* MindfulnessDurationPickerView.swift in Sources */,
@@ -781,6 +788,7 @@
 				47C0B8CB291E9D4800F04C7F /* MySchedules.swift in Sources */,
 				47AFCE7F2926EF5700E47FCD /* Encodable+Dict.swift in Sources */,
 				47183C6C292AE02900AB6A38 /* CustomizeNotificationsView.swift in Sources */,
+				47FE9F85292B4C870062B1A6 /* Feature.swift in Sources */,
 				47AFCE7D2926EF4100E47FCD /* Session.swift in Sources */,
 				47F5563C2929AEC000CCB9B4 /* Device.swift in Sources */,
 				47183C552929E3F700AB6A38 /* MultiComponentPicker.swift in Sources */,

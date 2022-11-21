@@ -25,7 +25,7 @@ struct MindfulnessDurationPickerView: View {
                 .cornerRadius(5)
                 .foregroundColor(.black.opacity(0.5))
             Spacer()
-            Text("Mindfulness Session")
+            Text("Mindfulness Break")
                 .font(.title)
                 .foregroundColor(.white)
                 .fontWeight(.bold)
@@ -52,7 +52,6 @@ struct MindfulnessDurationPickerView: View {
                 .tint(.white)
                 .cornerRadius(40)
         }
-        .fontWeight(.light)
         .font(.body)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .padding(EdgeInsets(top: 8, leading: 15, bottom: 20, trailing: 15))

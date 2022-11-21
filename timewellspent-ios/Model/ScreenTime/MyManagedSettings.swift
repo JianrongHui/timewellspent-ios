@@ -20,7 +20,7 @@ struct MyManagedSettings: Codable {
         [.mindfulnessInterruption: DeviceActivityEvent(applications: selectionToDiscourage.applicationTokens,
                                                        categories: selectionToDiscourage.categoryTokens,
                                                        webDomains: selectionToDiscourage.webDomainTokens,
-                                                       threshold: DateComponents(second: 10))]
+                                                       threshold: DateComponents(minute: DeviceService.shared.getVariedSessiontime()))]
     } //computed property so that we get the updated tokens
     
     enum CodingKeys: String, CodingKey {
