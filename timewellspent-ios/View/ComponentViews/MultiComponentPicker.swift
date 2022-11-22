@@ -24,7 +24,6 @@ struct MultiComponentPicker<Tag: Hashable>: View  {
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 0) {
-                let count = columns.count
                 ForEach(0 ..< columns.count, id: \.self) { index in
                     let column = columns[index]
                     ZStack(alignment: Alignment.init(horizontal: .customCenter, vertical: .center)) {
