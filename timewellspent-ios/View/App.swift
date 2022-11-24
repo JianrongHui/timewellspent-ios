@@ -18,13 +18,18 @@ struct timewellspent_iosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .sheet(isPresented: $isUpdateDetailsAvailable) {
-                    UpdateAvailableView(isPresented: $isUpdateDetailsAvailable)
-                }
-                .onAppear {
-                    isUpdateDetailsAvailable = isVersion(Constants.updateAvailableVersion, newerThan: Constants.currentVersion)! && isVersion(Constants.updateAvailableVersion, newerThan: DeviceService.shared.getLastReceivedNewUpdateAlertVersion())!
-                }
+            NavigationStack {
+                ContentView()
+                    .sheet(isPresented: $isUpdateDetailsAvailable) {
+                        UpdateAvailableView(isPresented: $isUpdateDetailsAvailable)
+                    }
+                    .onAppear {
+                        print("ON APPEAR", Constants.updateAvailableVersion)
+                        isUpdateDetailsAvailable =
+                        isVersion(Constants.updateAvailableVersion, newerThan: Constants.currentVersion) ?? false
+                        && isVersion(Constants.updateAvailableVersion, newerThan: DeviceService.shared.getLastReceivedNewUpdateAlertVersion()) ?? false
+                    }
+            }
         }
     }
     

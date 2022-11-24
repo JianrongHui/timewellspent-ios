@@ -46,6 +46,7 @@ enum Constants {
                 print(error!)
                 return
             }
+            remoteConfig.activate()
             //do something with values if you want
             //            print(updateAvailableFeatures.jsonValue as? Features)
             print("Retrieved remote config")
@@ -63,6 +64,8 @@ enum Constants {
                 return
             }
             remoteConfig.activate()
+            print("AFTER FETCH", updateAvailableVersion)
+//            print(updateAvailableVersion)
             print("Retrieved remote config")
         }
     }

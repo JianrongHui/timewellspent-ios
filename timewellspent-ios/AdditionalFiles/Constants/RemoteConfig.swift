@@ -22,6 +22,7 @@ enum VersionError: Error {
 //        }
 
 func isVersion(_ versionA: String, newerThan versionB: String) -> Bool? {
+    print("is version " + versionA + " newer than " + versionB)
     let componentsA: [Int] = versionA.components(separatedBy: ".").compactMap { Int($0) }
     let componentsB: [Int] = versionB.components(separatedBy: ".").compactMap { Int($0) }
     guard componentsB.count == 3, componentsA.count == 3 else { return nil }
